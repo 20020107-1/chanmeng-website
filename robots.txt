@@ -1,0 +1,45 @@
+# 婵梦科技 — robots.txt
+# 最后更新: 2026-05-29
+# https://chanmeng.com/robots.txt
+
+# ========== 搜索引擎爬虫 ==========
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+Disallow: /api/
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+# ========== AI 爬虫 ==========
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# ========== 通用规则 ==========
+User-agent: *
+Disallow: /api/
+Disallow: /_next/
+
+# ========== Sitemap ==========
+Sitemap: https://chanmeng.com/sitemap.xml
