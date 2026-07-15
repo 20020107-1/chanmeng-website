@@ -9,8 +9,8 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', phone: '', industry: '', demand: '' })
   const [submitted, setSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState('')
-  const formEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT?.trim()
-    || 'https://formsubmit.co/yaoyuan@chanmengtech.cn'
+  const formEndpoint = 'https://api.web3forms.com/submit'
+  const web3FormsAccessKey = '83098712-93d4-49fb-92c3-27126baab3c9'
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (!formEndpoint) {
@@ -92,9 +92,11 @@ export default function ContactPage() {
               </div>
             ) : (
               <form action={formEndpoint} method="POST" target="_blank" onSubmit={handleSubmit} className="space-y-5">
-                <input type="hidden" name="_subject" value="婵梦科技官网｜联系页面客户咨询" />
-                <input type="hidden" name="_template" value="table" />
-                <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
+                <input type="hidden" name="access_key" value={web3FormsAccessKey} />
+                <input type="hidden" name="subject" value="婵梦科技官网｜联系页面客户咨询" />
+                <input type="hidden" name="from_name" value="婵梦科技官网" />
+                <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">您的姓名 / 公司名称 *</label>
                   <input id="name" name="姓名或公司名称" type="text" required value={form.name} onChange={e => setForm({...form, name: e.target.value})}

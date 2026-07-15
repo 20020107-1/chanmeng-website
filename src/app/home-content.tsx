@@ -54,8 +54,8 @@ interface NavItem { name: string; id: string }
 interface FormData { company: string; contact: string; demand: string }
 interface FormErrors { company?: string; contact?: string; demand?: string }
 
-const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT?.trim()
-  || 'https://formsubmit.co/yaoyuan@chanmengtech.cn'
+const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
+const WEB3FORMS_ACCESS_KEY = '83098712-93d4-49fb-92c3-27126baab3c9'
 
 // ============ Navigation Items ============
 const NAV_ITEMS: NavItem[] = [
@@ -572,10 +572,11 @@ export default function HomeContent() {
             onSubmit={submitForm}
             noValidate
           >
-            <input type="hidden" name="_subject" value="婵梦科技官网｜首页客户咨询" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
-            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+            <input type="hidden" name="subject" value="婵梦科技官网｜首页客户咨询" />
+            <input type="hidden" name="from_name" value="婵梦科技官网" />
+            <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
             <div>
               <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">公司名称 *</label>
               <input id="company" name="公司名称" type="text" placeholder="请输入公司名称" autoComplete="organization" value={form.company} onChange={updateForm}
