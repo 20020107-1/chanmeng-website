@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import BrandMark from '@/components/brand-mark'
 import BrandName from '@/components/brand-name'
 
 const NAV_LINKS = [
@@ -22,6 +21,8 @@ function FadeInView({ children, className = '', delay = 0 }: { children: React.R
 }
 
 export default function Footer() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
   return (
     <footer className="bg-gray-900 text-gray-300" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -30,7 +31,13 @@ export default function Footer() {
           {/* 公司信息 */}
           <FadeInView className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <BrandMark />
+              <span className="relative block w-14 h-9 translate-x-[5px] -translate-y-[4px] overflow-hidden flex-shrink-0" aria-hidden="true">
+                <img
+                  src={`${basePath}/chanmeng-logo-dark.png`}
+                  alt=""
+                  className="absolute inset-x-0 top-0 w-full h-auto"
+                />
+              </span>
               <BrandName />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-3">
