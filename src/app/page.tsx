@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     images: ['/og-image.svg'],
   },
   alternates: {
-    canonical: 'https://chanmengtech.me',
+    canonical: 'https://20020107-1.github.io/chanmeng-website',
   },
 }
 

@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  metadataBase: new URL('https://chanmengtech.me'),
+  metadataBase: new URL('https://20020107-1.github.io/chanmeng-website'),
   title: {
     default: '婵梦科技 · 企业增长解决方案',
     template: '%s | 婵梦科技',

@@ -9,6 +9,9 @@ const nextConfig = {
   // GitHub Pages 静态导出
   ...(isGitHubPages && { output: 'export' }),
 
+  // 项目站点部署在 GitHub Pages 的仓库子路径下
+  ...(isGitHubPages && { basePath: '/chanmeng-website' }),
+
   // 静态导出需要关闭默认的图片优化
   images: {
     unoptimized: true,

@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SITE_URL: https://chanmengtech.me
+      SITE_URL: https://20020107-1.github.io/chanmeng-website
     steps:
       - name: Checkout
         uses: actions/checkout@v4
