@@ -3,6 +3,9 @@
 const isGitHubPages = !!process.env.GITHUB_ACTIONS;
 
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGitHubPages ? '/chanmeng-website' : '',
+  },
   turbopack: {
     root: process.cwd(),
   },

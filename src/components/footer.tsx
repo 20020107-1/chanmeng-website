@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import BrandMark from '@/components/brand-mark'
+import BrandName from '@/components/brand-name'
 
 const NAV_LINKS = [
   { name: '首页', href: '/' },
@@ -28,8 +30,8 @@ export default function Footer() {
           {/* 公司信息 */}
           <FadeInView className="md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center font-bold text-white text-sm">CM</div>
-              <span className="text-lg font-bold text-white">婵梦科技</span>
+              <BrandMark />
+              <BrandName />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-3">
               AI驱动 · 合伙共创<br />企业增长全链路平台
