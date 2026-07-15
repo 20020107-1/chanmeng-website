@@ -1,31 +1,13 @@
-import { Geist, Geist_Mono, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const notoSansSC = Noto_Sans_SC({
-  variable: "--font-noto-sc",
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
-});
-
 export const metadata = {
-  // 部署后需要改成你的实际网址（如 https://username.github.io/repo-name）
-  metadataBase: new URL('https://chanmeng.com'),
+  metadataBase: new URL('https://chanmengtech.me'),
   title: {
-    default: '婵梦科技 · 增长全链路 | 中国企业终身增长合伙人',
+    default: '婵梦科技 · 企业增长解决方案',
     template: '%s | 婵梦科技',
   },
-  description: '婵梦科技通过AI+流量+人才+产业四维模式，为企业提供从人才孵化、流量获客、品牌出海到全链路服务的一站式解决方案。',
-  keywords: ['婵梦科技', '企业服务', '增长全链路', '跨境电商', 'AI赋能', '产业园', '流量获客', '品牌出海', '杭州'],
+  description: '婵梦科技是AI驱动的合伙制企业增长全链路平台，以AI赋能人才，以合伙成就事业。',
+  keywords: ['婵梦科技', '合伙制企业', '企业增长全链路', '跨境电商', 'AI赋能', '商业转化', '流量获客', '品牌出海', '杭州'],
   authors: [{ name: '杭州婵梦传媒科技有限公司' }],
   icons: {
     icon: '/icon.svg',
@@ -33,8 +15,8 @@ export const metadata = {
     apple: '/icon.svg',
   },
   openGraph: {
-    title: '婵梦科技 · 增长全链路 | 中国企业终身增长合伙人',
-    description: '从流量到交付，一站式解决企业所有增长难题。AI+流量+人才+产业，打造中国企业服务第一极。',
+    title: '婵梦科技 · 企业增长解决方案',
+    description: 'AI驱动，合伙共创，覆盖流量获客、商业转化、品牌出海与跨境增长。',
     locale: 'zh_CN',
     type: 'website',
     images: [
@@ -42,7 +24,7 @@ export const metadata = {
         url: '/og-image.svg',
         width: 1200,
         height: 630,
-        alt: '婵梦科技 — 中国企业终身增长合伙人',
+        alt: '婵梦科技 — 企业增长解决方案',
       },
     ],
   },
@@ -53,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable} ${notoSansSC.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col">
         {children}
@@ -67,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: '婵梦科技',
               alternateName: '杭州婵梦传媒科技有限公司',
               description:
-                '中国企业终身增长合伙人。通过AI+流量+人才+产业四维模式，提供从获客到品牌出海的一站式企业增长服务。',
+                'AI驱动的合伙制企业增长全链路平台，以AI赋能人才，以合伙成就事业。',
               url: 'https://chanmeng.com',
               foundingDate: '2026-05',
               founder: {
@@ -94,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 '人才孵化',
                 '全域营销',
               ],
-              slogan: 'AI+流量+人才+产业，企业全链路增长服务',
+              slogan: '以AI赋能人才，以合伙成就事业',
             }),
           }}
         />
@@ -108,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: '婵梦科技',
               url: 'https://chanmeng.com',
               description:
-                '中国企业终身增长合伙人。AI+流量+人才+产业四维驱动增长。',
+                'AI驱动，合伙共创，连接企业增长与创业者事业成长。',
               inLanguage: 'zh-CN',
               potentialAction: {
                 '@type': 'SearchAction',
@@ -131,12 +113,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: '杭州婵梦传媒科技有限公司',
               alternateName: '婵梦科技',
               description:
-                '中国企业终身增长合伙人。通过AI+流量+人才+产业四维模式，提供从人才孵化、流量获客、品牌出海到全链路服务的一站式解决方案。',
+                'AI驱动的合伙制企业增长全链路平台，覆盖流量获客、商业转化、品牌出海与跨境增长。',
               url: 'https://chanmeng.com',
-              telephone: '400-000-0000',
-              email: 'contact@chanmeng.com',
+              email: 'yaoyuan@chanmengtech.cn',
               foundingDate: '2026-05',
-              slogan: 'AI+流量+人才+产业，企业全链路增长服务',
+              slogan: '以AI赋能人才，以合伙成就事业',
               image: 'https://chanmeng.com/og-image.png',
               address: {
                 '@type': 'PostalAddress',

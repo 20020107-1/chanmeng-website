@@ -3,11 +3,11 @@
 const isGitHubPages = !!process.env.GITHUB_ACTIONS;
 
 const nextConfig = {
+  turbopack: {
+    root: process.cwd(),
+  },
   // GitHub Pages 静态导出
   ...(isGitHubPages && { output: 'export' }),
-
-  // GitHub Pages 需要 basePath (仅部署时生效)
-  ...(isGitHubPages && { basePath: '/chanmeng-website' }),
 
   // 静态导出需要关闭默认的图片优化
   images: {
