@@ -2,14 +2,23 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import BrandMark from '@/components/brand-mark'
+import BrandName from '@/components/brand-name'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', phone: '', industry: '', demand: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const formEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT?.trim()
+    || 'https://formsubmit.co/yaoyuan@chanmengtech.cn'
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!formEndpoint) {
+      e.preventDefault()
+      setSubmitError('在线咨询通道正在配置，请先通过企微邮箱 yaoyuan@chanmengtech.cn 联系我们。')
+      return
+    }
+    setSubmitError('')
   }
 
   return (
@@ -17,8 +26,8 @@ export default function ContactPage() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center font-bold text-white">CM</div>
-            <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">婵梦科技</span>
+            <BrandMark />
+            <BrandName />
           </Link>
           <div className="flex items-center gap-6">
             <Link href="/services" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">核心服务</Link>
@@ -48,17 +57,12 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">📞</div>
-                <div>
-                  <p className="font-semibold text-gray-800 text-sm">联系电话</p>
-                  <p className="text-gray-500 text-sm mt-1">400-000-0000</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">📧</div>
                 <div>
-                  <p className="font-semibold text-gray-800 text-sm">电子邮箱</p>
-                  <p className="text-gray-500 text-sm mt-1">contact@chanmeng.com</p>
+                  <p className="font-semibold text-gray-800 text-sm">企微邮箱</p>
+                  <p className="text-gray-500 text-sm mt-1">
+                    <a href="mailto:yaoyuan@chanmengtech.cn" className="hover:text-blue-600 transition-colors">yaoyuan@chanmengtech.cn</a>
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -70,10 +74,10 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-gray-50 rounded-xl">
+            <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-100">
               <p className="text-sm text-gray-500 leading-relaxed">
                 <strong className="text-gray-800">杭州婵梦传媒科技有限公司</strong><br />
-                统一社会信用代码：待完善
+                AI驱动的合伙制企业增长全链路平台
               </p>
             </div>
           </div>
@@ -87,20 +91,23 @@ export default function ContactPage() {
                 <p className="text-gray-600 text-sm">感谢您的咨询，我们将在1-2个工作日内与您联系。</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form action={formEndpoint} method="POST" target="_blank" onSubmit={handleSubmit} className="space-y-5">
+                <input type="hidden" name="_subject" value="婵梦科技官网｜联系页面客户咨询" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">您的姓名 / 公司名称 *</label>
-                  <input id="name" type="text" required value={form.name} onChange={e => setForm({...form, name: e.target.value})}
+                  <input id="name" name="姓名或公司名称" type="text" required value={form.name} onChange={e => setForm({...form, name: e.target.value})}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors" />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">联系电话 / 微信 *</label>
-                  <input id="phone" type="text" required value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}
+                  <input id="phone" name="联系方式" type="text" required value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors" />
                 </div>
                 <div>
                   <label htmlFor="industry" className="block text-sm font-medium text-gray-700 mb-1">所属行业</label>
-                  <select id="industry" value={form.industry} onChange={e => setForm({...form, industry: e.target.value})}
+                  <select id="industry" name="所属行业" value={form.industry} onChange={e => setForm({...form, industry: e.target.value})}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
                     <option value="">请选择</option>
                     <option value="制造业">制造业 / 工厂</option>
@@ -113,7 +120,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <label htmlFor="demand" className="block text-sm font-medium text-gray-700 mb-1">需求描述 *</label>
-                  <textarea id="demand" required rows={4} value={form.demand} onChange={e => setForm({...form, demand: e.target.value})}
+                  <textarea id="demand" name="需求描述" required rows={4} value={form.demand} onChange={e => setForm({...form, demand: e.target.value})}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors resize-none"
                     placeholder="请描述您的需求或合作意向" />
                 </div>
@@ -121,8 +128,10 @@ export default function ContactPage() {
                   className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-500 hover:to-blue-500 text-white py-4 rounded-lg font-semibold transition shadow-lg shadow-blue-500/20">
                   提交咨询
                 </button>
+                {submitError && <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">{submitError}</p>}
               </form>
             )}
+            <iframe name="_contact-submit" className="hidden" title="联系表单提交" />
           </div>
         </div>
       </main>
