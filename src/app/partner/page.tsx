@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import BrandMark from '@/components/brand-mark'
+import BrandName from '@/components/brand-name'
 
 export const metadata: Metadata = {
   title: '渠道合作',
@@ -39,8 +41,8 @@ export default function PartnerPage() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center font-bold text-white">CM</div>
-            <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">婵梦科技</span>
+            <BrandMark />
+            <BrandName />
           </Link>
           <Link href="/contact" className="px-4 py-2 rounded-full bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors">申请合作</Link>
         </div>

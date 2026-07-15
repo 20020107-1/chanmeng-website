@@ -3,10 +3,10 @@
 import { motion } from 'framer-motion'
 
 const CASES = [
-  { title: '电动自行车品牌 · 北美出海', result: '6个月', detail: '品牌出海全案服务，覆盖独立站搭建与北美媒体投放', highlight: '投放ROAS稳定提升', color: 'teal' as const },
-  { title: '杭州家居集团 · 全域获客', result: '3个月', detail: '全域流量运营+AI内容矩阵+独立站搭建', highlight: '获客成本持续优化', color: 'sky' as const },
-  { title: '外贸企业 · 人才孵化', result: '3个月', detail: '跨境电商人才培训与点对点输送，匹配企业岗位需求', highlight: '人才留存率持续改善', color: 'amber' as const },
-  { title: '家电品牌 · 产业园入驻', result: '入驻半年', detail: '零房租产业园入驻，享受12项基础服务', highlight: '办公成本显著降低', color: 'pink' as const },
+  { title: '电动自行车品牌 · 北美出海', result: '品牌出海', detail: '覆盖独立站搭建、海外内容与北美媒体投放，逐步建立自主获客渠道', highlight: '从渠道搭建到投放复盘', color: 'teal' as const },
+  { title: '杭州家居集团 · 全域获客', result: '全域增长', detail: '整合内容矩阵、广告投放与独立站承接，持续优化线索获取流程', highlight: '建立可复用获客链路', color: 'sky' as const },
+  { title: '外贸企业 · 人才孵化', result: '人才支撑', detail: '根据岗位需求开展跨境运营培训与匹配，帮助团队补齐执行能力', highlight: '培训与岗位需求衔接', color: 'amber' as const },
+  { title: '家电品牌 · 产业服务', result: '企业服务', detail: '围绕办公、资源连接与基础企业服务，降低业务落地的沟通成本', highlight: '增长之外的落地支撑', color: 'pink' as const },
 ]
 
 const colorMap = {
@@ -20,7 +20,11 @@ export default function CustomerCases() {
   return (
     <section id="cases" className="py-16 md:py-24 px-4 md:px-6 bg-white" aria-label="客户案例">
       <div className="max-w-7xl mx-auto">
-        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold text-center mb-16 text-blue-600">客户案例</motion.h2>
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold tracking-[0.2em] text-blue-500 mb-3">项目实践</p>
+          <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold text-slate-900">从问题出发，用交付建立信任</motion.h2>
+          <p className="mt-4 text-gray-500 max-w-2xl mx-auto">以下展示不同业务场景下的服务路径。具体数据和交付范围以双方确认的项目方案为准。</p>
+        </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {CASES.map((c, i) => {
             const clr = colorMap[c.color]
@@ -35,7 +39,7 @@ export default function CustomerCases() {
             )
           })}
         </div>
-        <p className="text-center text-gray-400 text-xs mt-8">* 案例均已脱敏处理，具体数据以实际合作为准</p>
+        <p className="text-center text-gray-400 text-xs mt-8">* 为保护客户商业信息，页面仅展示经脱敏处理的项目概览</p>
       </div>
     </section>
   )

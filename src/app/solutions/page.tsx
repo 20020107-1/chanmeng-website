@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import BrandMark from '@/components/brand-mark'
+import BrandName from '@/components/brand-name'
 
 export const metadata: Metadata = {
   title: '解决方案',
@@ -12,7 +14,7 @@ const SOLUTIONS = [
     industry: '制造业工厂',
     icon: '🏭',
     pain: '有产能、有技术，但缺乏线上获客渠道，外贸订单来源单一，品牌知名度低',
-    approach: '独立站搭建 + Google/TikTok全球投放 + 跨境电商人才输送',
+    approach: '海外社媒运营 + Google/TikTok全球推广 + 跨境电商人才输送',
     value: '拓宽海外订单来源，建立自主品牌渠道，降低对单一客户的依赖',
   },
   {
@@ -51,8 +53,8 @@ export default function SolutionsPage() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center font-bold text-white">CM</div>
-            <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">婵梦科技</span>
+            <BrandMark />
+            <BrandName />
           </Link>
           <div className="flex items-center gap-6">
             <Link href="/services" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">核心服务</Link>

@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import BrandMark from '@/components/brand-mark'
+import BrandName from '@/components/brand-name'
 
 export const metadata: Metadata = {
   title: '关于我们',
   description:
-    '了解婵梦科技——中国企业终身增长合伙人。成立于2026年5月，总部位于杭州萧山，通过AI+流量+人才+产业四维模式为企业提供全链路增长服务。',
+    '了解婵梦科技——AI驱动的合伙制企业增长全链路平台。使命是以AI赋能人才，以合伙成就事业。',
   keywords: ['婵梦科技', '关于我们', '公司介绍', '创始人', '企业服务', '杭州', '品牌故事'],
   openGraph: {
-    title: '关于婵梦科技 | 中国企业终身增长合伙人',
+    title: '关于婵梦科技 | AI驱动的合伙制企业增长全链路平台',
     description:
-      '了解婵梦科技的品牌故事、创始团队与企业使命。AI+流量+人才+产业，四维驱动企业增长。',
+      '了解婵梦科技的公司定位、企业使命、愿景与核心价值观。',
   },
   robots: { index: true, follow: true },
 }
@@ -17,23 +19,31 @@ export const metadata: Metadata = {
 const STATS = [
   { value: '2026', label: '成立年份' },
   { value: '杭州', label: '总部所在地' },
-  { value: '5+', label: '核心业务板块' },
-  { value: '12+', label: '产业园免费服务' },
+  { value: '3类', label: '核心服务对象' },
+  { value: '5项', label: '核心价值观' },
 ]
 
 const MISSIONS = [
-  '用AI赋能人才',
-  '用流量驱动增长',
-  '用服务成就品牌',
-  '让中国智造走向世界',
+  '以AI赋能人才',
+  '以合伙成就事业',
+  '让创业者找到清晰的增长路径',
+  '帮助企业实现从获客到出海的突破',
+  '让AI成为每个人都能使用的增长工具',
+]
+
+const VISION_POINTS = [
+  '构建充满活力的合伙人生态',
+  '连接企业需求、人才能力与业务机会',
+  '形成可复制、可持续的增长服务体系',
+  '让合伙共创成为企业增长的新选择',
 ]
 
 const VALUES = [
-  { title: '客户第一 · 结果为王', desc: '一切以客户成功为衡量标准，不达目标不罢休' },
-  { title: '专业为本 · 数据说话', desc: '每一项决策都基于真实数据，每一次交付都追求极致' },
-  { title: '温度服务 · 终身陪伴', desc: '不只是服务商，更是企业成长路上的终身伙伴' },
-  { title: '技术驱动 · AI赋能', desc: '拥抱前沿技术，用AI帮助企业降本增效' },
-  { title: '合伙共赢 · 长期主义', desc: '与合作伙伴共同成长，共创长期价值' },
+  { title: '合伙共创', desc: '合资源、资金、能力、机会与利润，做让所有合伙人共同增益的事' },
+  { title: 'AI驱动', desc: '让AI参与关键流程，用技术持续提升获客、转化与交付效率' },
+  { title: '实干为先', desc: '不画饼、不吹牛，能交付的才承诺' },
+  { title: '开放共赢', desc: '坚持利润共享、信息透明、规则公开' },
+  { title: '长期主义', desc: '不做短期收割，建设可持续的长期合伙生态' },
 ]
 
 export default function AboutPage() {
@@ -43,8 +53,8 @@ export default function AboutPage() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center font-bold text-white">CM</div>
-            <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">婵梦科技</span>
+            <BrandMark />
+            <BrandName />
           </Link>
           <Link href="/#contact" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
             联系我们 →
@@ -57,7 +67,7 @@ export default function AboutPage() {
         <div className="text-center mb-20">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">关于婵梦科技</h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            中国企业终身增长合伙人
+            AI驱动的合伙制企业增长全链路平台
           </p>
         </div>
 
@@ -70,17 +80,16 @@ export default function AboutPage() {
                 <strong className="text-gray-900">杭州婵梦传媒科技有限公司</strong>成立于
                 <span className="text-blue-600 font-semibold">2026年5月</span>，总部位于
                 <span className="text-blue-600 font-semibold">杭州市萧山区</span>，
-                是一家专注于为中国企业提供全链路增长服务的综合性平台公司。
+                是一家以AI为核心工具、以合伙制为组织方式的企业增长生态平台。
               </p>
               <p className="text-gray-700 leading-relaxed mb-6">
-                我们通过<span className="text-blue-600 font-semibold">AI+流量+人才+产业</span>的四维模式，
-                为企业提供从人才孵化、流量获客、品牌出海到全链路服务的一站式解决方案。
+                我们服务企业客户、内部合伙人与外部合伙人，通过
+                <span className="text-blue-600 font-semibold">流量获客、商业转化、品牌出海与AI赋能</span>，
+                帮助企业和创业者找到可持续的增长路径。
               </p>
               <p className="text-gray-700 leading-relaxed">
                 <strong className="text-gray-900">核心定位：</strong>
-                中国企业终身增长合伙人。我们不做二房东，不做培训机构，不做一次性代运营。
-                我们是企业的长期增长服务伙伴。
-                ——这是我们唯一的商业逻辑。
+                AI驱动的合伙制企业增长全链路平台。
               </p>
             </div>
 
@@ -110,9 +119,17 @@ export default function AboutPage() {
           </div>
           <div className="bg-emerald-50 rounded-2xl p-8">
             <h3 className="text-xl font-bold text-emerald-600 mb-4">🔭 企业愿景</h3>
-            <p className="text-gray-700 text-sm leading-relaxed">
-              成为一家受尊敬的企业全链路增长服务提供商。
+            <p className="text-gray-700 text-sm leading-relaxed mb-4 font-medium">
+              成为中国最具活力的合伙制企业增长生态平台。
             </p>
+            <ul className="space-y-2">
+              {VISION_POINTS.map((point) => (
+                <li key={point} className="text-gray-700 text-sm flex items-start gap-2">
+                  <span className="text-emerald-500 mt-0.5">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="bg-violet-50 rounded-2xl p-8">
             <h3 className="text-xl font-bold text-violet-600 mb-4">💎 核心价值观</h3>
@@ -157,24 +174,24 @@ export default function AboutPage() {
             <div className="bg-white rounded-2xl p-8 border border-blue-200 shadow-sm">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-2xl font-bold mb-4">萱</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">萱盛果</h3>
-              <p className="text-blue-600 text-sm font-medium mb-4">创始人</p>
+              <p className="text-blue-600 text-sm font-medium mb-4">创始人 · 转化成交负责人</p>
               <p className="text-gray-600 text-sm leading-relaxed">
-                12年企业招商与销讲经验，熟悉企业服务市场。
+                12年企业招商与销讲经验，擅长招商会承接、科学转化流程设计与一对多成交，帮助企业缩短变现路径，以成交和现金流结果为导向。
               </p>
             </div>
             <div className="bg-white rounded-2xl p-8 border border-blue-200 shadow-sm">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-400 to-violet-600 flex items-center justify-center text-white text-2xl font-bold mb-4">V</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Vivian</h3>
-              <p className="text-violet-600 text-sm font-medium mb-4">联合创始人</p>
+              <p className="text-violet-600 text-sm font-medium mb-4">联合创始人 · AI获客负责人</p>
               <p className="text-gray-600 text-sm leading-relaxed">
-                10年跨境电商运营经验，深谙北美、欧洲、东南亚市场打法。
+                专注AI精准获客与渠道优化，通过爆款短视频、IP打造和付费流量放大，持续提升流量效率，帮助企业获得更多精准客户。
               </p>
             </div>
           </div>
           <div className="bg-gray-900 text-gray-300 rounded-2xl p-8 max-w-3xl mx-auto mt-8">
             <p className="text-white text-lg font-semibold mb-3">创始人心声</p>
             <p className="leading-relaxed text-sm text-gray-400">
-              10年前，我们进入互联网行业，从普通运营一步步做到投流总监、公司合伙人。近年来，我们关注到跨境电商和AI技术的快速发展——也发现许多企业在数字化和全球化转型中面临挑战。于是，我们决定创办婵梦科技，将多年积累的投流经验、跨境理解和AI应用整合，打造全链路企业增长服务平台。
+              我们始终相信，企业增长不应只停留在流量和方法上，而要真正落实到客户、成交与现金流。一个负责用AI和内容帮助企业找到更多精准客户，一个负责通过科学的转化体系推动成交、拿到结果。我们希望把获客与转化真正连接起来，陪伴企业走出一条更清晰、更高效、更可持续的增长路径。
             </p>
           </div>
         </section>
@@ -215,7 +232,6 @@ export default function AboutPage() {
           </div>
           <p>© 2026 杭州婵梦传媒科技有限公司 · 保留所有权利</p>
           <p className="text-gray-600 text-xs mt-2">
-            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">浙ICP备XXXXXXXX号</a>
           </p>
         </div>
       </footer>
@@ -229,7 +245,7 @@ export default function AboutPage() {
             '@type': 'AboutPage',
             name: '关于婵梦科技',
             description:
-              '了解婵梦科技——中国企业终身增长合伙人。成立于2026年5月，总部位于杭州萧山，通过AI+流量+人才+产业四维模式为企业提供全链路增长服务。',
+              '了解婵梦科技——AI驱动的合伙制企业增长全链路平台。使命是以AI赋能人才，以合伙成就事业。',
             url: 'https://chanmeng.com/about',
             about: {
               '@type': 'Organization',

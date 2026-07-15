@@ -1,66 +1,73 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import BrandMark from '@/components/brand-mark'
+import BrandName from '@/components/brand-name'
 
 export const metadata: Metadata = {
   title: '核心服务',
-  description: '婵梦科技提供全域流量运营、AI企业效率提升、跨境电商人才孵化、品牌出海全案、企业综合服务五大核心业务。',
+  description: '婵梦科技以商业增长全案为根基，提供AI获客工具、TikTok B2B品牌出海、跨境电商培训与AI跨境带货服务。',
   robots: { index: true, follow: true },
 }
 
 const SERVICES = [
   {
-    title: '全域流量运营',
+    id: 'commercial-growth',
+    title: '商业增长全案',
     icon: '📡',
-    subtitle: '抖音 / TikTok / Google / Facebook 全平台精准获客',
+    subtitle: '从流量获客到商业转化，建立可持续增长路径',
     items: [
-      'AI批量生成短视频内容，降低内容生产成本',
-      '基于数据的精准投放，提升广告转化效率',
-      '账号诊断与优化，账号健康度持续提升',
-      '从曝光到转化，全链路流量运营服务',
+      '短视频IP与内容获客体系',
+      '精准投流与GEO增长支持',
+      '商业转化与增长模式梳理',
+      '从诊断、方案到执行复盘的全链路服务',
     ],
   },
   {
-    title: 'AI企业效率提升',
+    id: 'ai-tools',
+    title: 'AI获客工具',
     icon: '🤖',
-    subtitle: '用AI重新定义企业运营效率',
+    subtitle: '让AI参与获客、转化与交付的关键流程',
     items: [
-      'AI智能客服系统，降低客服人力成本',
-      'AI数据分析与经营洞察，辅助决策',
-      'AI内容生成，批量产出营销素材',
-      'AI营销自动化，提升线索转化效率',
+      'AI外呼与客户触达工具',
+      '无人直播与内容自动化能力',
+      'GEO精准获客与定向推广',
+      '数字员工与企业流程提效',
     ],
   },
   {
-    title: '跨境电商人才孵化',
-    icon: '🎓',
-    subtitle: '从0到1系统培养跨境全岗位人才',
-    items: [
-      '运营、投流、客服、选品全岗位培训',
-      '理论授课+实操训练+真实项目实战',
-      '点对点人才输送，匹配企业需求',
-      '持续跟踪辅导，确保人才落地能力',
-    ],
-  },
-  {
-    title: '品牌出海全案',
+    id: 'tiktok-b2b',
+    title: 'TikTok B2B品牌出海',
     icon: '🌏',
-    subtitle: '从品牌定位到全球市场一站式服务',
+    subtitle: '面向批发商、代理商、经销商与采购商的品牌出海服务',
     items: [
-      '品牌定位与市场策略规划',
-      '独立站搭建与优化',
-      '全球媒体投放（覆盖北美、欧洲、东南亚）',
-      '海外仓物流与清关一站式对接',
+      '海外品牌定位与内容包装',
+      'TikTok B2B渠道搭建',
+      '海外市场推广与客户触达',
+      '持续运营与阶段性复盘',
     ],
   },
   {
-    title: '企业综合服务',
-    icon: '🏢',
-    subtitle: '财税、政策申报、供应链等配套服务',
+    id: 'cross-border-training',
+    title: '跨境电商培训',
+    icon: '🎓',
+    subtitle: '覆盖TikTok Shop、美客多与虾皮的实操成长路径',
     items: [
-      '基础财税服务与税务筹划',
-      '政府政策解读与补贴申报辅导',
-      '供应链资源对接与优化',
-      '企业商学院搭建与团队培训',
+      '从0到1的平台认知与开店流程',
+      '运营、投流、客服与选品训练',
+      '理论学习与真实项目实操结合',
+      '持续辅导与岗位能力提升',
+    ],
+  },
+  {
+    id: 'ai-commerce',
+    title: 'AI跨境带货',
+    icon: '🛒',
+    subtitle: '用AI大模型提升跨境内容与带货效率',
+    items: [
+      'AI辅助选品与内容生产',
+      '跨境带货素材规模化制作',
+      '数据反馈与内容持续优化',
+      'AI工具与跨境业务场景结合',
     ],
   },
 ]
@@ -72,8 +79,8 @@ export default function ServicesPage() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center font-bold text-white">CM</div>
-            <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">婵梦科技</span>
+            <BrandMark />
+            <BrandName />
           </Link>
           <div className="flex items-center gap-6">
             <Link href="/solutions" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">解决方案</Link>
@@ -87,14 +94,14 @@ export default function ServicesPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">核心服务</h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            五大核心业务板块，覆盖企业从获客到交付的全部增长需求
+            以商业增长全案为根基，用AI工具、出海服务与人才成长能力支撑业务落地
           </p>
         </div>
 
         {/* 服务卡片 */}
         <div className="space-y-8">
           {SERVICES.map((svc, i) => (
-            <section key={svc.title} className="bg-white rounded-2xl border border-blue-100 p-8 md:p-10 hover:shadow-lg hover:border-blue-200 transition-all duration-300">
+            <section id={svc.id} key={svc.title} className="scroll-mt-24 bg-white rounded-2xl border border-blue-100 p-8 md:p-10 hover:shadow-lg hover:border-blue-200 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-3xl">

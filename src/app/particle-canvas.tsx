@@ -4,7 +4,7 @@ import { useRef, useMemo, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const PARTICLE_COUNT = 200
+const PARTICLE_COUNT = 120
 const CONNECT_DIST = 2.2
 const TOTAL_AREA = 12
 
@@ -136,7 +136,8 @@ export default function ParticleCanvas() {
     <Canvas
       camera={{ position: [0, 0, 6] }}
       aria-hidden="true"
-      gl={{ alpha: true }}
+      gl={{ alpha: true, antialias: false, powerPreference: 'low-power' }}
+      dpr={[1, 1.5]}
       style={{
         position: 'absolute',
         top: 0,
