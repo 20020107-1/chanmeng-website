@@ -472,7 +472,7 @@ export default function HomeContent() {
           </div>
           <div className="mt-10 text-center">
             <Link href="/about" className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors">
-              了解更多 →</Link>
+              了解更多</Link>
           </div>
         </div>
       </section>
@@ -501,7 +501,7 @@ export default function HomeContent() {
           </div>
           <div className="mt-10 text-center">
             <Link href="/services" className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors">
-              查看全部服务 →</Link>
+              查看全部服务</Link>
           </div>
         </div>
       </section>
@@ -526,7 +526,7 @@ export default function HomeContent() {
           </div>
           <div className="mt-10 text-center">
             <Link href="/solutions" className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors">
-              查看全部方案 →</Link>
+              查看全部方案</Link>
           </div>
         </div>
       </section>
@@ -546,7 +546,7 @@ export default function HomeContent() {
               </p>
               <Link href="/partner"
                 className="inline-block px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold shadow-lg shadow-amber-500/25 transition-all">
-                了解合作详情 →
+                了解合作详情
               </Link>
               <p className="text-gray-400 text-xs mt-4">* 合作有风险，加入前请充分了解合作条款</p>
             </div>

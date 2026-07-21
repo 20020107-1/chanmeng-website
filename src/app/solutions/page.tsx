@@ -107,7 +107,7 @@ export default function SolutionsPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-3">您的企业属于哪个行业？</h2>
             <p className="text-gray-600 mb-6">联系我们，免费获取针对您行业的定制化增长方案建议。</p>
             <Link href="/contact" className="inline-block px-8 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all">
-              获取方案 →
+              获取方案
             </Link>
           </div>
         </section>

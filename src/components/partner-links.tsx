@@ -107,7 +107,6 @@ export default function PartnerLinks() {
             <a href="#contact" className="text-blue-500 hover:text-blue-600 font-medium text-sm underline underline-offset-2 transition-colors">
               联系我们
             </a>
-            <span className="text-blue-300">→</span>
           </div>
         </motion.div>
       </div>

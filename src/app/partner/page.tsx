@@ -105,7 +105,7 @@ export default function PartnerPage() {
             </p>
             <div className="text-center">
               <Link href="/contact" className="inline-block px-8 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all">
-                提交合作申请 →
+                提交合作申请
               </Link>
             </div>
             <p className="text-center text-gray-400 text-xs mt-6">

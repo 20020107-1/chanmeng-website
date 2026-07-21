@@ -87,7 +87,7 @@ export default function PrivacyPage() {
             <BrandName />
           </Link>
           <Link href="/#contact" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
-            联系我们 →
+            联系我们
           </Link>
         </div>
       </nav>

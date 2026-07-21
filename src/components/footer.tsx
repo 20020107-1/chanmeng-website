@@ -87,7 +87,7 @@ export default function Footer() {
             </ul>
             <div className="mt-6">
               <Link href="/contact" className="inline-block px-4 py-2 rounded-full bg-blue-600 text-white text-xs font-medium hover:bg-blue-500 transition-colors">
-                预约咨询 →
+                预约咨询
               </Link>
             </div>
           </FadeInView>

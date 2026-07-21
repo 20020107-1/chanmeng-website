@@ -131,7 +131,7 @@ export default function ServicesPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-3">需要定制化服务方案？</h2>
             <p className="text-gray-600 mb-6">点击下方按钮，告诉我们您的需求，我们将为您匹配最合适的方案。</p>
             <Link href="/contact" className="inline-block px-8 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all">
-              联系我们 →
+              联系我们
             </Link>
           </div>
         </section>
