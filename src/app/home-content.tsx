@@ -328,7 +328,7 @@ export default function HomeContent() {
             <p className="mb-5 text-sm md:text-base font-semibold tracking-[0.24em] text-blue-600">AI驱动 · 合伙共创 · 全链路增长</p>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight">
               <span className="bg-gradient-to-r from-gray-800 via-blue-600 to-blue-700 bg-clip-text text-transparent">
-                获客有方法 · 成交有体系<br />企业增长更有结果
+                AI驱动企业增长<br />打通获客与成交链路
               </span>
             </h1>
           </motion.div>
