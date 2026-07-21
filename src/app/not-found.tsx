@@ -2,6 +2,7 @@ import Link from 'next/link'
 import BrandMark from '@/components/brand-mark'
 import BrandName from '@/components/brand-name'
 import type { Metadata } from 'next'
+import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
   title: '页面未找到',
@@ -56,10 +57,7 @@ export default function NotFound() {
         </div>
       </main>
 
-      {/* 页脚 */}
-      <footer className="py-6 text-center text-gray-400 text-sm border-t border-gray-100">
-        © 2026 杭州婵梦传媒科技有限公司
-      </footer>
+      <Footer />
     </div>
   )
 }

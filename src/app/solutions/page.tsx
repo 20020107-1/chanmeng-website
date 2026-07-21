@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import BrandMark from '@/components/brand-mark'
 import BrandName from '@/components/brand-name'
+import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
   title: '解决方案',
@@ -113,18 +114,7 @@ export default function SolutionsPage() {
         </section>
       </main>
 
-      <footer className="bg-gray-900 text-gray-500 py-8 text-center text-sm">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-center gap-6 mb-4">
-            <Link href="/" className="hover:text-gray-300 transition-colors">首页</Link>
-            <Link href="/services" className="hover:text-gray-300 transition-colors">核心服务</Link>
-            <span className="text-gray-300">解决方案</span>
-            <Link href="/privacy" className="hover:text-gray-300 transition-colors">隐私政策</Link>
-            <Link href="/terms" className="hover:text-gray-300 transition-colors">服务条款</Link>
-          </div>
-          <p>© 2026 杭州婵梦传媒科技有限公司 · 保留所有权利</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
