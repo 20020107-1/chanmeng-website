@@ -274,7 +274,15 @@ export default function HomeContent() {
       {/* ======== 导航栏 ======== */}
       <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm" role="navigation" aria-label="主导航">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-          <button onClick={() => scrollTo('home')} className="flex items-center gap-3" aria-label="回到首页">
+          <button
+            onClick={() => {
+              setActiveNav(0)
+              setMobileOpen(false)
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className="flex items-center gap-3"
+            aria-label="回到首页"
+          >
             <BrandMark />
             <BrandName />
           </button>
