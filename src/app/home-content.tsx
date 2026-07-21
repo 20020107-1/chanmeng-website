@@ -335,8 +335,8 @@ export default function HomeContent() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-6 text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            <span className="block">以AI赋能人才，以合伙成就事业。</span>
-            <span className="block mt-1">为企业提供增长路径，为创业者提供体系、工具与伙伴。</span>
+            <span className="block">为企业提供AI获客、商业转化与品牌出海服务。</span>
+            <span className="block mt-1">让获客更精准，让增长更高效。</span>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.45 }}

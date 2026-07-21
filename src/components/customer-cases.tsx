@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion'
 
 const CASES = [
-  { title: '电动自行车品牌 · 北美出海', result: '品牌出海', detail: '覆盖独立站搭建、海外内容与北美媒体投放，逐步建立自主获客渠道', highlight: '从渠道搭建到投放复盘', color: 'teal' as const },
-  { title: '杭州家居集团 · 全域获客', result: '全域增长', detail: '整合内容矩阵、广告投放与独立站承接，持续优化线索获取流程', highlight: '建立可复用获客链路', color: 'sky' as const },
+  { title: '电动自行车品牌 · 北美出海', result: '品牌出海', detail: '覆盖海外内容运营与北美媒体投放，逐步建立自主获客渠道', highlight: '从渠道搭建到投放复盘', color: 'teal' as const },
+  { title: '杭州家居集团 · 全域获客', result: '全域增长', detail: '整合内容矩阵与广告投放，持续优化线索获取和转化流程', highlight: '建立可复用获客链路', color: 'sky' as const },
   { title: '外贸企业 · 人才孵化', result: '人才支撑', detail: '根据岗位需求开展跨境运营培训与匹配，帮助团队补齐执行能力', highlight: '培训与岗位需求衔接', color: 'amber' as const },
   { title: '家电品牌 · 产业服务', result: '企业服务', detail: '围绕办公、资源连接与基础企业服务，降低业务落地的沟通成本', highlight: '增长之外的落地支撑', color: 'pink' as const },
 ]
