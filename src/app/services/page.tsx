@@ -77,7 +77,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Nav */}
-      <nav className="apple-nav sticky top-0 z-50">
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
             <BrandMark />

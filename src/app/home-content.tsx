@@ -272,7 +272,7 @@ export default function HomeContent() {
     <main className="min-h-screen bg-white text-gray-800">
       <ProgressBar />
       {/* ======== 导航栏 ======== */}
-      <nav className="apple-nav fixed w-full z-50" role="navigation" aria-label="主导航">
+      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm" role="navigation" aria-label="主导航">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <button
             onClick={() => {
@@ -311,7 +311,7 @@ export default function HomeContent() {
           {mobileOpen && (
             <motion.div initial={{ opacity: 0, x: '100%' }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed inset-0 top-[49px] bg-white/95 backdrop-blur-xl z-40 overflow-y-auto">
+              className="lg:hidden fixed inset-0 top-[73px] bg-white/95 backdrop-blur-xl z-40 overflow-y-auto">
               <div className="flex flex-col gap-1 px-6 py-4">
                 {NAV_ITEMS.map((item) => {
                   const idx = sectionIds.indexOf(item.id)
