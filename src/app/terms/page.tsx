@@ -74,7 +74,7 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* 顶部导航条 */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
+      <nav className="apple-nav sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
             <BrandMark />
