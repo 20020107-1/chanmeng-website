@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import BrandMark from '@/components/brand-mark'
-import BrandName from '@/components/brand-name'
+import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
@@ -28,7 +27,7 @@ const MISSIONS = [
   '以AI赋能人才',
   '以合伙成就事业',
   '让创业者找到清晰的增长路径',
-  '帮助企业实现从获客到出海的突破',
+  '帮助企业实现从获客到成交的持续增长',
   '让AI成为每个人都能使用的增长工具',
 ]
 
@@ -50,18 +49,7 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* 导航条 */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <Link href="/#contact" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
-            联系我们
-          </Link>
-        </div>
-      </nav>
+      <SiteHeader active="/about" />
 
       <main className="max-w-5xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* 标题 */}
@@ -73,7 +61,7 @@ export default function AboutPage() {
         </div>
 
         {/* 公司概况 */}
-        <section className="mb-20">
+        <section id="service-audiences" className="mb-20 scroll-mt-24">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">公司概况</h2>
           <div className="bg-gray-50 rounded-2xl p-8 md:p-12">
             <div className="max-w-3xl mx-auto">
@@ -85,7 +73,7 @@ export default function AboutPage() {
               </p>
               <p className="text-gray-700 leading-relaxed mb-6">
                 我们服务企业客户、内部合伙人与外部合伙人，通过
-                <span className="text-blue-600 font-semibold">流量获客、商业转化、品牌出海与AI赋能</span>，
+                <span className="text-blue-600 font-semibold">AI搜索获客、内容营销、全域流量与商业转化</span>，
                 帮助企业和创业者找到可持续的增长路径。
               </p>
               <p className="text-gray-700 leading-relaxed">
@@ -204,13 +192,13 @@ export default function AboutPage() {
             <p className="text-gray-600 mb-6">从城市服务商到企业全案服务，总有一种合作方式适合你。</p>
             <div className="flex justify-center gap-4 flex-wrap">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="px-8 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all"
               >
                 预约合作
               </Link>
               <Link
-                href="/#business"
+                href="/services"
                 className="px-8 py-3.5 rounded-full border-2 border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold transition-all"
               >
                 了解业务

@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const MESSAGES = [
-  '某家居品牌刚刚签约进阶版服务', '某跨境企业成功申请500万政府补贴', '杭州萧山产业园新增3家企业入驻',
-  '本期跨境电商人才培训班满员开班', '某品牌独立站上线首月ROI突破5',
+  '某家居品牌刚刚签约进阶版服务', '某企业完成AI搜索问题矩阵部署', '杭州萧山产业园新增3家企业入驻',
+  '某本地品牌完成私域承接流程升级', '某企业内容运营体系进入执行阶段',
 ]
 
 export default function SocialProof() {

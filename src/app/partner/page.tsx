@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import BrandMark from '@/components/brand-mark'
-import BrandName from '@/components/brand-name'
+import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
@@ -39,15 +38,7 @@ const JOIN_PROCESS = [
 export default function PartnerPage() {
   return (
     <div className="min-h-screen bg-white">
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <Link href="/contact" className="px-4 py-2 rounded-full bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors">申请合作</Link>
-        </div>
-      </nav>
+      <SiteHeader active="/partner" />
 
       <main className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* 标题 */}
@@ -58,8 +49,13 @@ export default function PartnerPage() {
           </p>
         </div>
 
+        <section className="mb-20 grid gap-6 md:grid-cols-2">
+          <div id="internal-partner" className="scroll-mt-24 rounded-2xl bg-blue-50 p-8 md:p-10"><p className="text-sm font-medium text-blue-600">内部合伙人</p><h2 className="mt-3 text-2xl font-bold text-gray-900">从学习实践到项目协作</h2><p className="mt-4 text-sm leading-7 text-gray-600">面向希望发展个人事业的大学生、宝妈与全职创业者，提供方向、技能、AI工具和真实项目实践支持。</p><Link href="/contact" className="mt-6 inline-flex text-sm text-blue-600">咨询内部合伙人计划</Link></div>
+          <div id="external-partner" className="scroll-mt-24 rounded-2xl bg-emerald-50 p-8 md:p-10"><p className="text-sm font-medium text-emerald-600">外部合伙人</p><h2 className="mt-3 text-2xl font-bold text-gray-900">连接渠道资源与成熟业务</h2><p className="mt-4 text-sm leading-7 text-gray-600">面向销售人才、渠道资源方与本地服务者，连接成熟服务能力、交付体系和长期合作机会。</p><Link href="/contact" className="mt-6 inline-flex text-sm text-emerald-700">咨询外部合伙人计划</Link></div>
+        </section>
+
         {/* 合作模式 */}
-        <section className="mb-20">
+        <section id="cooperation-models" className="mb-20 scroll-mt-24">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">合作模式</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {COOPERATION_MODELS.map((model) => (

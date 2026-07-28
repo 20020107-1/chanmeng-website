@@ -8,7 +8,10 @@ const NAV_LINKS = [
   { name: '首页', href: '/' },
   { name: '关于我们', href: '/about' },
   { name: '核心服务', href: '/services' },
-  { name: '解决方案', href: '/solutions' },
+  { name: '行业方案', href: '/solutions' },
+  { name: '客户案例', href: '/cases' },
+  { name: '新闻动态', href: '/news' },
+  { name: '合作伙伴', href: '/partners' },
   { name: '渠道合作', href: '/partner' },
 ]
 
@@ -68,9 +71,10 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm text-gray-400">
               <li><Link href="/services#commercial-growth" className="hover:text-white transition-colors">商业增长全案</Link></li>
               <li><Link href="/services#ai-tools" className="hover:text-white transition-colors">AI获客工具</Link></li>
-              <li><Link href="/services#tiktok-b2b" className="hover:text-white transition-colors">TikTok B2B品牌出海</Link></li>
-              <li><Link href="/services#cross-border-training" className="hover:text-white transition-colors">跨境电商培训</Link></li>
-              <li><Link href="/services#ai-commerce" className="hover:text-white transition-colors">AI跨境带货</Link></li>
+              <li><Link href="/services/ai-search-acquisition" className="hover:text-white transition-colors">AI搜索获客</Link></li>
+              <li><Link href="/services/ai-content-marketing" className="hover:text-white transition-colors">AI内容营销</Link></li>
+              <li><Link href="/services/omnichannel-traffic-operations" className="hover:text-white transition-colors">全域流量运营</Link></li>
+              <li><Link href="/services/commercial-conversion-growth" className="hover:text-white transition-colors">商业转化与增长</Link></li>
             </ul>
           </FadeInView>
 
@@ -78,7 +82,7 @@ export default function Footer() {
           <FadeInView delay={0.2}>
             <h4 className="text-white font-semibold mb-4 text-sm">联系方式</h4>
             <ul className="space-y-2.5 text-sm text-gray-400">
-              <li>浙江省杭州市萧山区</li>
+              <li className="max-w-[260px] leading-6">浙江省杭州市萧山区新街街道垦辉六路799号2号楼901-1室</li>
               <li>咨询电话：<a href="tel:19812347986" className="hover:text-white transition-colors">19812347986</a></li>
               <li>合作电话：<a href="tel:19812347986" className="hover:text-white transition-colors">19812347986</a></li>
               <li className="whitespace-nowrap text-xs">企微客服邮箱：<a href="mailto:yaoyuan@chanmengtech.cn" className="hover:text-white transition-colors">yaoyuan@chanmengtech.cn</a></li>

@@ -5,14 +5,20 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import BrandMark from '@/components/brand-mark'
 import BrandName from '@/components/brand-name'
+import SiteSearch from '@/components/site-search'
 
 import ProgressBar from '@/components/progress-bar'
 import BackToTop from '@/components/back-to-top'
 import CustomerCases from '@/components/customer-cases'
 import FaqSection from '@/components/faq-section'
 import Footer from '@/components/footer'
+import { NEWS_ARTICLES } from '@/data/news'
+import { PRIMARY_NAV } from '@/data/navigation'
+import NavigationDrawer from '@/components/navigation-drawer'
+import NavPreview from '@/components/nav-preview'
 import FloatingCta from '@/components/floating-cta'
 import HoverBorderCard from '@/components/hover-border-card'
+import PhoneVerificationFields from '@/components/phone-verification-fields'
 
 // ============ Dynamic import: 3D Canvas ============
 const ParticleCanvas = lazy(() =>
@@ -50,7 +56,7 @@ function HeroBackground({ opacity }: { opacity: any }) {
 }
 
 // ============ Types ============
-interface NavItem { name: string; id: string }
+interface NavItem { name: string; id: string; href: string }
 interface FormData { company: string; contact: string; demand: string }
 interface FormErrors { company?: string; contact?: string; demand?: string }
 
@@ -59,59 +65,41 @@ const WEB3FORMS_ACCESS_KEY = '83098712-93d4-49fb-92c3-27126baab3c9'
 
 // ============ Navigation Items ============
 const NAV_ITEMS: NavItem[] = [
-  { name: '首页', id: 'home' },
-  { name: '关于我们', id: 'about' },
-  { name: '核心服务', id: 'services' },
-  { name: '解决方案', id: 'solutions-section' },
-  { name: '客户案例', id: 'cases' },
-  { name: '渠道合作', id: 'partner' },
-  { name: '联系我们', id: 'contact' },
+  { name: '首页', id: 'home', href: '/' },
+  { name: '关于我们', id: 'about', href: '/about' },
+  { name: '核心服务', id: 'services', href: '/services' },
+  { name: '客户案例', id: 'cases', href: '/cases' },
+  { name: '新闻动态', id: 'news', href: '/news' },
+  { name: '渠道合作', id: 'partner', href: '/partner' },
+  { name: '联系我们', id: 'contact', href: '/contact' },
 ]
 
 // ============ Core services ============
 const SERVICES = [
-  { title: '流量获客与商业转化', icon: '01', desc: '以内容获客、精准投流与AI工具建立流量入口，并通过商业全案把流量转化为可持续增长' },
-  { title: 'AI工具与效率赋能', icon: '02', desc: '让AI贯穿获客、转化与交付流程，帮助企业和创业者降低使用门槛、放大个人与组织价值' },
-  { title: '品牌出海与跨境增长', icon: '03', desc: '围绕TikTok B2B、跨境电商培训与AI跨境带货，提供从品牌打包到渠道落地的增长支持' },
+  { title: 'AI搜索获客', icon: '01', href: '/services/ai-search-acquisition', value: '提升品牌可见度，获得更精准的主动咨询', desc: '面向希望进入AI搜索与智能推荐场景的企业和个人IP，系统建设可被理解、验证和引用的品牌内容。', services: 'GEO优化｜AEO优化｜LLMO优化｜自研获客系统', scenes: '专业服务｜本地企业｜企业品牌｜个人IP' },
+  { title: 'AI内容营销', icon: '02', href: '/services/ai-content-marketing', value: '提高内容效率，持续积累品牌信任', desc: '围绕真实客户问题和业务价值建立内容体系，用AI辅助策划、生产与复盘，让内容能够连接获客和转化。', services: '内容策划｜短视频运营｜直播策划｜IP与品牌建设', scenes: '企业内容升级｜创始人IP｜知识服务｜品牌传播' },
+  { title: '全域流量运营', icon: '03', href: '/services/omnichannel-traffic-operations', value: '减少渠道依赖，沉淀可持续客户资产', desc: '整合自然流量、付费投放、公域触达和私域承接，让不同渠道围绕同一个客户与业务目标协同运行。', services: '自然流量｜付费投放｜短视频与直播｜私域沉淀', scenes: '新客增长｜渠道优化｜同城获客｜私域运营' },
+  { title: '商业转化与增长', icon: '04', href: '/services/commercial-conversion-growth', value: '提升成交效率，让增长进入经营结果', desc: '从商业定位、产品结构到销讲成交和客户承接，帮助已有流量或专业能力的团队建立可复制的转化体系。', services: '商业设计｜产品体系｜销讲成交｜组织执行', scenes: '项目转化｜招商路演｜私域成交｜持续复购' },
 ]
 
-const TRUST_POINTS = [
-  { label: '服务对象', value: '企业客户 · 内部合伙人 · 外部合伙人' },
-  { label: '增长路径', value: '流量获客 · 商业转化 · 品牌出海' },
-  { label: '组织方式', value: 'AI驱动 · 合伙共创 · 长期共赢' },
+const PROOF_POINTS = [
+  { value: '8', label: 'AI平台矩阵', note: '点击查看平台范围', href: '/platforms' },
+  { value: '6,933', label: '问题收录记录', note: '装修行业案例材料', href: '/cases/geo-decoration-multi-platform' },
+  { value: '4', label: '核心业务模块', note: '覆盖获客、内容、流量与转化', href: '/services' },
 ]
 
-const AUDIENCES = [
-  {
-    code: 'B01',
-    title: '企业客户',
-    profile: '中小企业主 · 创业者 · 工厂负责人',
-    need: '需要解决流量、转化、商业模式与品牌出海问题',
-    value: '获得从诊断、获客到增长落地的完整服务路径',
-  },
-  {
-    code: 'P02',
-    title: '内部合伙人',
-    profile: '大学生 · 宝妈 · 全职创业者',
-    need: '需要方向、技能、平台与AI工具支持',
-    value: '通过学习、实操和项目协作，把个人能力变成事业',
-  },
-  {
-    code: 'E03',
-    title: '外部合伙人',
-    profile: '销售人才 · 渠道资源方 · 本地服务者',
-    need: '希望拥有自己的业务，但不从零开发产品与体系',
-    value: '连接成熟业务能力、交付体系与长期合作机会',
-  },
+const GROWTH_STEPS = [
+  { number: '01', title: '诊断', desc: '明确目标客户、增长问题与当前链路' },
+  { number: '02', title: '获客', desc: '通过GEO与自媒体建立精准流量入口' },
+  { number: '03', title: '转化', desc: '筛选商机并连接内容、表单与销售跟进' },
+  { number: '04', title: '复盘', desc: '用项目数据持续优化投入与交付' },
 ]
-
-const GROWTH_STEPS = ['流量获客', '商业转化', 'AI赋能', '品牌出海']
 
 // ============ Solutions (3 industries) ============
 const SOLUTIONS_PREVIEW = [
-  { industry: '制造业 / 外贸企业', icon: '🏭', pain: '线上渠道匮乏，海外订单来源单一', approach: '海外社媒运营+全球推广+跨境人才输送' },
-  { industry: '跨境电商', icon: '🛒', pain: '广告成本上升，运营人才紧缺', approach: 'AI降本增效+多平台运营+人才孵化' },
-  { industry: '品牌出海', icon: '🌍', pain: '海外市场信息不对称，本地化能力不足', approach: '品牌策略+全球媒体+海外仓' },
+  { industry: '企业品牌', icon: '🏢', href: '/services#ai-content', pain: '内容效率不足，品牌表达缺少统一体系', approach: 'AI内容生产+品牌内容建设+全域传播' },
+  { industry: '个人IP', icon: '◉', href: '/services#ai-content', pain: '定位不清晰，内容与商业转化脱节', approach: 'IP定位+内容运营+私域成交' },
+  { industry: '本地商家', icon: '🏪', href: '/solutions/local-business-customer-growth', pain: '线上流量分散，客户难以持续沉淀', approach: 'AI搜索+自媒体获客+私域承接' },
 ]
 
 // ============ Shared Styles ============
@@ -205,7 +193,7 @@ function validateForm(form: FormData): FormErrors {
   const errors: FormErrors = {}
   if (!form.company.trim()) errors.company = '请输入公司名称'
   if (!form.contact.trim()) { errors.contact = '请输入联系电话' }
-  else if (!/^[\d\s\-+()（）]{7,20}$/.test(form.contact.trim())) { errors.contact = '请输入有效的电话号码' }
+  else if (!/^1[3-9]\d{9}$/.test(form.contact.trim())) { errors.contact = '请输入有效的中国大陆手机号码' }
   if (!form.demand.trim()) errors.demand = '请简单描述您的需求'
   return errors
 }
@@ -214,6 +202,7 @@ function validateForm(form: FormData): FormErrors {
 export default function HomeContent() {
   const [activeNav, setActiveNav] = useState(0)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const [form, setForm] = useState<FormData>({ company: '', contact: '', demand: '' })
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitting, setSubmitting] = useState(false)
@@ -263,16 +252,11 @@ export default function HomeContent() {
     addToast('正在提交，请在新页面查看结果', 'success')
   }, [form, addToast])
 
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [mobileOpen])
-
   return (
     <main className="min-h-screen bg-white text-gray-800">
       <ProgressBar />
       {/* ======== 导航栏 ======== */}
-      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm" role="navigation" aria-label="主导航">
+      <nav className="apple-nav fixed w-full z-50" role="navigation" aria-label="主导航">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           <button
             onClick={() => {
@@ -280,52 +264,37 @@ export default function HomeContent() {
               setMobileOpen(false)
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2"
             aria-label="回到首页"
           >
             <BrandMark />
             <BrandName />
           </button>
 
-          <div className="hidden lg:flex gap-6">
-            {NAV_ITEMS.map((item) => {
-              const idx = sectionIds.indexOf(item.id)
-              return (
-                <button key={item.id} onClick={() => scrollTo(item.id)} aria-current={currentNav === idx ? 'page' : undefined}
-                  className={`text-sm font-medium transition ${currentNav === idx ? 'text-blue-600' : 'text-gray-500 hover:text-gray-800'}`}>
-                  {item.name}
-                </button>
-              )
-            })}
+          <div className="apple-nav-links hidden lg:flex items-center">
+            {PRIMARY_NAV.map((item) => <NavPreview key={item.href} item={item} />)}
           </div>
 
-          <button className="lg:hidden flex flex-col gap-1.5 p-2" onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? '关闭菜单' : '打开菜单'} aria-expanded={mobileOpen}>
-            <span className={`block w-6 h-0.5 bg-gray-600 transition-transform ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-gray-600 transition-opacity ${mobileOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-gray-600 transition-transform ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-          </button>
+          <div className="apple-nav-actions ml-auto flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => { setSearchOpen(!searchOpen); setMobileOpen(false) }}
+              className={`grid h-8 w-8 place-items-center rounded-full transition-colors hover:bg-black/5 ${searchOpen ? 'bg-black/5 text-blue-600' : 'text-gray-800'}`}
+              aria-label={searchOpen ? '关闭站内搜索' : '打开站内搜索'}
+              aria-expanded={searchOpen}
+            >
+              <svg className="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" strokeWidth="1.7" />
+                <path d="m16 16 4.2 4.2" strokeWidth="1.7" strokeLinecap="round" />
+              </svg>
+            </button>
+            <button className="grid h-8 w-8 place-items-center rounded-full transition-colors hover:bg-black/5" onClick={() => { setMobileOpen(!mobileOpen); setSearchOpen(false) }} aria-label={mobileOpen ? '关闭全部导航' : '打开全部导航'} aria-expanded={mobileOpen}>
+              <span className="relative block h-3.5 w-4" aria-hidden="true"><i className={`absolute left-0 top-[2px] block h-px w-4 bg-gray-800 transition-all duration-200 ${mobileOpen ? 'translate-y-[5px] rotate-45' : ''}`} /><i className={`absolute left-0 top-[7px] block h-px w-4 bg-gray-800 transition-opacity duration-150 ${mobileOpen ? 'opacity-0' : 'opacity-100'}`} /><i className={`absolute bottom-[1px] left-0 block h-px w-4 bg-gray-800 transition-all duration-200 ${mobileOpen ? '-translate-y-[5px] -rotate-45' : ''}`} /></span>
+            </button>
+          </div>
         </div>
-
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div initial={{ opacity: 0, x: '100%' }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed inset-0 top-[73px] bg-white/95 backdrop-blur-xl z-40 overflow-y-auto">
-              <div className="flex flex-col gap-1 px-6 py-4">
-                {NAV_ITEMS.map((item) => {
-                  const idx = sectionIds.indexOf(item.id)
-                  return (
-                    <button key={item.id} onClick={() => scrollTo(item.id)} aria-current={currentNav === idx ? 'page' : undefined}
-                      className={`text-left px-4 py-3 rounded-lg text-base font-medium transition ${currentNav === idx ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'}`}>
-                      {item.name}
-                    </button>
-                  )
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
+        <NavigationDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
       </nav>
 
       {/* ======== 首屏 Hero ======== */}
@@ -333,29 +302,28 @@ export default function HomeContent() {
         <HeroBackground opacity={opacity} />
         <div className="relative z-10 text-center px-4 max-w-5xl translate-y-6 md:translate-y-12">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: 'easeOut' }}>
-            <p className="mb-5 text-sm md:text-base font-semibold tracking-[0.24em] text-blue-600">AI驱动 · 合伙共创 · 全链路增长</p>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight">
-              <span className="bg-gradient-to-r from-gray-800 via-blue-600 to-blue-700 bg-clip-text text-transparent">
-                AI驱动企业增长<br />打通获客与成交链路
-              </span>
+            <p className="mb-6 text-sm md:text-base font-medium tracking-[0.08em] text-slate-500">婵梦科技｜企业增长服务</p>
+            <h1 className="font-semibold leading-[1.07] tracking-[-0.055em]">
+              <span className="block text-4xl text-slate-900 md:text-[64px] lg:text-[72px]">让企业获客更精准</span>
+              <span className="mt-1 block text-[38px] text-blue-600 md:text-[58px] lg:text-[66px]">让客户成交更顺畅</span>
             </h1>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-6 text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            <span className="block">为企业提供AI获客、商业转化与品牌出海服务。</span>
-            <span className="block mt-1">让获客更精准，让增长更高效。</span>
+            <span className="block">面向企业与个人IP，</span>
+            <span className="block mt-1">提供从AI搜索获客、内容营销到商业转化的一站式增长服务。</span>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.45 }}
             className="mt-12 flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/contact"
               className="px-10 py-4 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 transition-all text-white font-semibold text-lg shadow-lg shadow-blue-500/25">
-              企业增长咨询
+              咨询增长方案
             </Link>
-            <Link href="/partner"
+            <Link href="/cases"
               className="px-10 py-4 rounded-full border-2 border-blue-500 text-blue-600 hover:bg-blue-50 transition font-semibold text-lg">
-              了解合伙合作
+              查看客户案例
             </Link>
           </motion.div>
         </div>
@@ -371,65 +339,19 @@ export default function HomeContent() {
         </motion.button>
       </section>
 
-      <section id="service-overview" className="relative z-20 pt-5 px-4 md:px-6 bg-white scroll-mt-24" aria-label="服务特点">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-3 overflow-hidden rounded-2xl border border-blue-100 bg-white/95 shadow-xl shadow-blue-900/5 backdrop-blur">
-          {TRUST_POINTS.map((item) => (
-            <div key={item.label} className="px-6 py-6 md:px-8 border-b md:border-b-0 md:border-r last:border-0 border-blue-100">
-              <p className="flex items-center gap-2 text-sm font-semibold tracking-normal text-slate-600 mb-2">
-                <span className="h-4 w-1 rounded-full bg-blue-500" aria-hidden="true" />
-                {item.label}
-              </p>
-              <p className="text-base font-semibold text-slate-800">{item.value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 px-4 md:px-6 bg-gradient-to-br from-sky-50 via-white to-blue-50 text-slate-900 border-y border-blue-100" aria-label="合伙制增长生态">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20 items-end mb-14">
-            <div>
-              <p className="text-xs font-semibold tracking-[0.22em] text-blue-600 mb-4">PARTNERSHIP ECOSYSTEM</p>
-              <h2 className="text-3xl md:text-5xl font-bold leading-tight">不只是提供服务，<br />更连接共同成长的人</h2>
-            </div>
-            <div>
-              <p className="text-slate-600 leading-8 max-w-2xl">
-                婵梦以合伙制连接企业需求、个人能力与业务机会。企业获得增长方案，创业者获得工具与路径，合作伙伴在透明规则下共同创造长期价值。
-              </p>
-              <div className="mt-7 grid grid-cols-4 gap-2" aria-label="企业增长全链路">
-                {GROWTH_STEPS.map((step, index) => (
-                  <div key={step} className="relative text-center">
-                    {index < GROWTH_STEPS.length - 1 && <div className="h-px bg-blue-300 absolute top-4 left-1/2 w-full" />}
-                    <span className="relative z-10 mx-auto w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-extrabold flex items-center justify-center shadow-md shadow-blue-300">{index + 1}</span>
-                    <p className="mt-3 text-xs md:text-sm font-medium text-slate-600">{step}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+      <section id="service-overview" className="relative z-20 bg-white px-4 pb-16 pt-5 md:px-6 md:pb-24 scroll-mt-24" aria-label="项目成果">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-9 text-center">
+            <p className="text-xs font-semibold tracking-[0.2em] text-blue-600">SELECTED OUTCOMES</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] text-slate-950 md:text-4xl">先看真实项目，再谈增长方案</h2>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-px bg-blue-100 border border-blue-100 rounded-2xl overflow-hidden shadow-xl shadow-blue-900/5">
-            {AUDIENCES.map((item, index) => (
-              <FadeInView key={item.code} delay={index * 0.08}>
-                <article className="h-full bg-white p-7 md:p-8 hover:bg-sky-50 transition-colors">
-                  <div className="flex items-center justify-between mb-9">
-                    <span className="text-base font-extrabold tracking-[0.12em] text-blue-600">{item.code}</span>
-                    <span className="text-sm font-semibold tracking-wide text-slate-500">服务对象</span>
-                  </div>
-                  <h3 className="text-[26px] md:text-[28px] font-bold tracking-[-0.03em] leading-tight text-slate-950 mb-3">{item.title}</h3>
-                  <p className="text-[15px] font-medium leading-6 text-blue-600 mb-8">{item.profile}</p>
-                  <div className="space-y-6 border-t border-blue-100 pt-6">
-                    <div>
-                      <p className="text-sm font-bold tracking-[0.08em] text-slate-500 mb-2">核心需求</p>
-                      <p className="text-base leading-7 text-slate-600">{item.need}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold tracking-[0.08em] text-slate-500 mb-2">获得价值</p>
-                      <p className="text-base leading-7 text-slate-600">{item.value}</p>
-                    </div>
-                  </div>
-                </article>
-              </FadeInView>
+          <div className="grid overflow-hidden rounded-2xl border border-slate-200 bg-white md:grid-cols-3">
+            {PROOF_POINTS.map((item) => (
+              <Link href={item.href} key={item.label} className="group border-b border-slate-200 px-7 py-8 text-center transition-colors hover:bg-blue-50/60 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
+                <strong className="block text-4xl font-semibold tracking-[-0.045em] text-blue-600 md:text-5xl">{item.value}</strong>
+                <span className="mt-3 block text-base font-semibold text-slate-900">{item.label}</span>
+                <span className="mt-1 block text-xs text-slate-400">{item.note}</span>
+              </Link>
             ))}
           </div>
         </div>
@@ -439,42 +361,21 @@ export default function HomeContent() {
       <section id="about" className={S.section} aria-label="关于我们">
         <div className="max-w-5xl mx-auto">
           <SectionHeading accent="indigo">关于婵梦科技</SectionHeading>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid gap-12 md:grid-cols-[1.15fr_0.85fr] md:items-start">
             <FadeInView direction="left">
               <h3 className="text-2xl font-semibold text-blue-600 mb-4">杭州婵梦传媒科技有限公司</h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                成立于2026年5月，总部位于杭州市萧山区，是一家以AI为核心工具、以合伙制为组织方式的企业增长生态平台。
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                我们以<span className="text-blue-600 font-semibold">AI驱动、合伙共创、全链路增长</span>为核心，
-                服务企业客户、内部合伙人与外部合伙人，覆盖流量获客、商业转化、品牌出海与跨境增长。
-              </p>
+              <p className="text-gray-600 leading-relaxed mb-4">我们面向企业与个人IP，提供AI搜索获客、AI内容营销、全域流量运营与商业转化服务。</p>
+              <p className="text-gray-600 leading-relaxed mb-4">从问题诊断、内容与投放，到商机筛选和项目复盘，我们用可执行的服务路径帮助客户建立更清晰的增长链路。</p>
               <p className="text-gray-600 leading-relaxed">
                 <strong className="text-gray-800">核心定位：</strong>
-                AI驱动的合伙制企业增长全链路平台。
+                以AI搜索优化和自研系统为技术底座，以内容营销和全域流量为获客入口，以商业设计和销讲体系为转化支撑的全链路增长服务商。
               </p>
             </FadeInView>
             <FadeInView direction="right">
-              <div className="bg-blue-50 rounded-2xl p-8 border border-blue-200">
-                <h4 className="text-xl font-semibold mb-6">使命 · 愿景 · 价值观</h4>
-                <div className="space-y-5">
-                  <div>
-                    <p className="text-blue-600 font-semibold mb-2">🎯 企业使命</p>
-                    <p className="text-gray-600 text-sm">以AI赋能人才，以合伙成就事业</p>
-                  </div>
-                  <div>
-                    <p className="text-blue-600 font-semibold mb-2">🔭 企业愿景</p>
-                    <p className="text-gray-600 text-sm">成为中国最具活力的合伙制企业增长生态平台</p>
-                  </div>
-                  <div>
-                    <p className="text-blue-600 font-semibold mb-2">💎 核心价值观</p>
-                    <div className="flex flex-wrap gap-2">
-                      {['合伙共创', 'AI驱动', '实干为先', '开放共赢', '长期主义'].map((v) => (
-                        <span key={v} className="px-3 py-1 bg-white rounded-full text-gray-700 text-xs">{v}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              <div className="border-l-2 border-blue-600 py-2 pl-7">
+                <p className="text-sm font-semibold text-blue-600">我们的原则</p>
+                <p className="mt-4 text-2xl font-semibold leading-9 tracking-[-0.03em] text-slate-900">不为曝光制造数字，<br />只围绕真实业务问题推进。</p>
+                <p className="mt-5 text-sm leading-7 text-slate-500">坚持实干、透明与长期合作，以双方确认的项目范围和数据作为交付依据。</p>
               </div>
             </FadeInView>
           </div>
@@ -488,22 +389,29 @@ export default function HomeContent() {
       {/* ======== 核心服务预览 ======== */}
       <section id="services" className={S.sectionAlt} aria-label="核心服务">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
+          <div className="mb-14 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
             <p className="text-xs font-semibold tracking-[0.2em] text-sky-600 mb-3">CORE SERVICES</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">围绕增长结果，补齐关键能力</h2>
-            <p className="mt-4 text-gray-500 max-w-2xl mx-auto">从流量获客到商业转化，从品牌出海到人才成长，用AI工具和合伙机制推动增长落地。</p>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-slate-900 md:text-5xl">四项业务协同，<br />创造长期增长价值</h2>
+            </div>
+            <p className="max-w-2xl text-base leading-8 text-gray-600 md:text-lg">以AI技术和自研系统为底座，通过AI搜索获客、AI内容营销、全域流量运营与商业转化，为企业和个人IP提供从内容生产到客户成交的一体化增长服务。</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid gap-5 md:grid-cols-2">
             {SERVICES.map((svc, i) => (
               <FadeInView key={svc.title} delay={i * 0.1}>
-                <div className="group relative overflow-hidden bg-white rounded-2xl border border-sky-100 p-7 md:p-8 h-full hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl hover:shadow-sky-900/5 transition-all duration-300">
-                  <div className="absolute -right-3 -top-8 text-[7rem] font-black leading-none text-sky-50 group-hover:text-sky-100 transition-colors" aria-hidden="true">{svc.icon}</div>
-                  <div className="relative">
-                    <div className="w-10 h-10 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-xs font-bold mb-8">{svc.icon}</div>
-                    <h3 className="font-bold text-slate-900 text-xl mb-4">{svc.title}</h3>
-                    <p className="text-gray-500 text-sm leading-7">{svc.desc}</p>
+                <Link href={svc.href} className="group block h-full rounded-[24px] border border-slate-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_20px_55px_rgba(15,44,88,.08)] md:p-9">
+                  <div className="flex items-start justify-between">
+                    <div className="grid h-11 w-11 place-items-center rounded-full bg-blue-50 text-sm font-semibold text-blue-600">{svc.icon}</div>
+                    <span className="text-sm font-medium text-blue-600 opacity-0 transition-opacity group-hover:opacity-100">了解详情</span>
                   </div>
-                </div>
+                  <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em] text-slate-950">{svc.title}</h3>
+                  <p className="mt-3 text-lg font-semibold leading-7 text-blue-600">{svc.value}</p>
+                  <p className="mt-5 text-[15px] leading-7 text-gray-600">{svc.desc}</p>
+                  <dl className="mt-7 space-y-4 border-t border-slate-100 pt-6 text-sm">
+                    <div><dt className="text-slate-400">核心服务</dt><dd className="mt-1.5 leading-6 text-slate-700">{svc.services}</dd></div>
+                    <div><dt className="text-slate-400">适用场景</dt><dd className="mt-1.5 leading-6 text-slate-700">{svc.scenes}</dd></div>
+                  </dl>
+                </Link>
               </FadeInView>
             ))}
           </div>
@@ -514,21 +422,43 @@ export default function HomeContent() {
         </div>
       </section>
 
+      <section className="bg-slate-950 px-4 py-16 text-white md:px-6 md:py-24" aria-label="服务方法">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold tracking-[0.18em] text-blue-400">HOW WE WORK</p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] md:text-5xl">从诊断到复盘，<br />每一步都服务于结果</h2>
+            </div>
+            <p className="max-w-2xl text-lg leading-8 text-slate-300 md:text-xl md:leading-9">我们不把获客、投放和销售割裂开来，而是围绕同一个业务目标持续推进和校准。</p>
+          </div>
+          <div className="mt-12 grid border-t border-white/15 md:grid-cols-4">
+            {GROWTH_STEPS.map((step) => (
+              <div key={step.number} className="border-b border-white/15 py-7 md:border-b-0 md:border-r md:px-6 md:first:pl-0 md:last:border-r-0">
+                <span className="text-base font-semibold text-blue-400">{step.number}</span>
+                <h3 className="mt-5 text-2xl font-semibold tracking-[-0.02em]">{step.title}</h3>
+                <p className="mt-3 max-w-[16rem] text-base leading-7 text-slate-300">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ======== 解决方案预览 ======== */}
       <section id="solutions-section" className={S.section} aria-label="解决方案">
         <div className="max-w-7xl mx-auto">
-          <SectionHeading accent="emerald">行业解决方案</SectionHeading>
+          <SectionHeading accent="emerald">行业方案</SectionHeading>
           <div className="grid md:grid-cols-3 gap-6">
             {SOLUTIONS_PREVIEW.map((sol, i) => (
               <FadeInView key={sol.industry} delay={i * 0.1}>
-                <div className="bg-white rounded-xl border border-teal-200 p-6 h-full hover:border-teal-400 hover:shadow-md transition-all duration-300">
+                <Link href={sol.href} className="group block bg-white rounded-xl border border-teal-200 p-6 h-full hover:-translate-y-1 hover:border-teal-400 hover:shadow-md transition-all duration-300">
                   <div className="text-3xl mb-3">{sol.icon}</div>
                   <h3 className="font-semibold text-gray-800 mb-3">{sol.industry}</h3>
                   <div className="space-y-2 text-sm">
                     <p className="text-gray-500"><span className="text-rose-500 font-medium">痛点：</span>{sol.pain}</p>
                     <p className="text-gray-500"><span className="text-teal-600 font-medium">方案：</span>{sol.approach}</p>
                   </div>
-                </div>
+                  <span className="mt-5 inline-flex text-xs text-blue-600">查看方案</span>
+                </Link>
               </FadeInView>
             ))}
           </div>
@@ -542,23 +472,38 @@ export default function HomeContent() {
       {/* ======== 客户案例 ======== */}
       <CustomerCases />
 
-      {/* ======== 渠道合作 ======== */}
-      <section id="partner" className={S.sectionAlt} aria-label="渠道合作">
-        <div className="max-w-5xl mx-auto">
-          <SectionHeading accent="amber">渠道合作</SectionHeading>
-          <FadeInView>
-            <div className="bg-white rounded-2xl border border-amber-200 p-8 mb-8 max-w-3xl mx-auto text-center">
-              <p className="text-gray-600 leading-relaxed mb-4">
-                我们诚邀城市服务商、业务合作伙伴、生态合作伙伴，共同服务中国企业增长市场。
-                提供品牌授权、培训支持、市场物料、技术支撑等全方位赋能。
-              </p>
-              <Link href="/partner"
-                className="inline-block px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold shadow-lg shadow-amber-500/25 transition-all">
-                了解合作详情
+      {/* ======== 新闻动态 ======== */}
+      <section id="news" className="py-16 md:py-24 px-4 md:px-6 bg-[#f5f5f7] scroll-mt-16" aria-label="新闻动态">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div><p className="text-xs font-semibold tracking-[0.2em] text-blue-600 mb-3">NEWSROOM</p><h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.045em] text-[#1d1d1f]">新闻与观点</h2><p className="mt-4 text-gray-500">记录公司进展，分享企业增长与AI应用的持续思考。</p></div>
+            <Link href="/news" className="text-sm text-blue-600 hover:underline">查看全部新闻</Link>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {NEWS_ARTICLES.slice(0, 3).map((article) => (
+              <Link key={article.slug} href={`/news/${article.slug}`}
+                className="group relative min-h-[320px] overflow-hidden rounded-[2rem] border border-black/5 bg-white p-7 text-[#1d1d1f] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-100 hover:shadow-xl hover:shadow-blue-900/5 md:p-8 flex flex-col justify-between">
+                <span className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-blue-100/80 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true" />
+                <p className="relative text-xs text-gray-500">{article.category} · {article.date}</p>
+                <div className="relative">
+                  <h3 className="text-2xl md:text-3xl font-semibold tracking-[-0.04em] leading-tight">{article.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-gray-500">{article.summary}</p>
+                  <span className="mt-6 inline-flex text-sm text-blue-600">阅读全文</span>
+                </div>
               </Link>
-              <p className="text-gray-400 text-xs mt-4">* 合作有风险，加入前请充分了解合作条款</p>
-            </div>
-          </FadeInView>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ======== 渠道合作 ======== */}
+      <section id="partner" className="border-y border-slate-200 bg-white px-4 py-12 md:px-6" aria-label="合作伙伴">
+        <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div>
+            <p className="text-base font-semibold text-blue-600">合作伙伴</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-950">寻找能够长期共同交付价值的伙伴</h2>
+          </div>
+          <Link href="/partner" className="shrink-0 rounded-full border border-blue-600 px-6 py-3 text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50">了解合作方式</Link>
         </div>
       </section>
 
@@ -592,13 +537,17 @@ export default function HomeContent() {
                 aria-invalid={!!errors.company} aria-describedby={errors.company ? 'company-error' : undefined} />
               {errors.company && <p id="company-error" className="mt-1 text-sm text-red-600">{errors.company}</p>}
             </div>
-            <div>
-              <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-1">联系电话/微信 *</label>
-              <input id="contact" name="联系方式" type="text" placeholder="请输入联系电话或微信" autoComplete="tel" value={form.contact} onChange={updateForm}
-                className={errors.contact ? S.inputError : S.input}
-                aria-invalid={!!errors.contact} aria-describedby={errors.contact ? 'contact-error' : undefined} />
-              {errors.contact && <p id="contact-error" className="mt-1 text-sm text-red-600">{errors.contact}</p>}
-            </div>
+            <PhoneVerificationFields
+              id="contact"
+              name="手机号码"
+              value={form.contact}
+              onChange={e => {
+                setForm((prev) => ({ ...prev, contact: e.target.value.replace(/\D/g, '') }))
+                setErrors((prev) => ({ ...prev, contact: undefined }))
+              }}
+              error={errors.contact}
+              inputClassName={errors.contact ? S.inputError : S.input}
+            />
             <div>
               <label htmlFor="demand" className="block text-sm font-medium text-gray-700 mb-1">需求描述 *</label>
               <textarea id="demand" name="需求描述" placeholder="请描述您的需求（服务咨询 / 合作意向 / 其他）" autoComplete="off" rows={5} value={form.demand} onChange={updateForm}

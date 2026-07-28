@@ -1,4 +1,6 @@
 import "./globals.css";
+import HomeShortcut from "@/components/home-shortcut";
+import CookieConsent from "@/components/cookie-consent";
 
 export const metadata = {
   metadataBase: new URL('https://20020107-1.github.io/chanmeng-website'),
@@ -7,7 +9,7 @@ export const metadata = {
     template: '%s | 婵梦科技',
   },
   description: '婵梦科技是AI驱动的合伙制企业增长全链路平台，以AI赋能人才，以合伙成就事业。',
-  keywords: ['婵梦科技', '合伙制企业', '企业增长全链路', '跨境电商', 'AI赋能', '商业转化', '流量获客', '品牌出海', '杭州'],
+  keywords: ['婵梦科技', 'AI搜索获客', 'GEO', 'AEO', 'LLMO', 'AI内容营销', '全域流量', '商业转化', '杭州'],
   authors: [{ name: '杭州婵梦传媒科技有限公司' }],
   icons: {
     icon: '/icon.svg',
@@ -16,7 +18,7 @@ export const metadata = {
   },
   openGraph: {
     title: '婵梦科技 · 企业增长解决方案',
-    description: 'AI驱动，合伙共创，覆盖流量获客、商业转化、品牌出海与跨境增长。',
+    description: '以AI技术和自研系统为底座，提供搜索获客、内容营销、全域流量与商业转化服务。',
     locale: 'zh_CN',
     type: 'website',
     images: [
@@ -39,6 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-full flex flex-col">
         {children}
+        <HomeShortcut />
+        <CookieConsent />
         {/* GEO: Organization 结构化数据 — AI 搜索引擎引用 */}
         <script
           type="application/ld+json"
@@ -61,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressLocality: '杭州',
                 addressRegion: '浙江',
                 addressCountry: 'CN',
+                streetAddress: '萧山区新街街道垦辉六路799号2号楼901-1室',
               },
               areaServed: {
                 '@type': 'Country',
@@ -68,10 +73,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
               knowsAbout: [
                 '企业增长服务',
-                '跨境电商',
                 'AI赋能',
                 '流量投流',
-                '品牌出海',
                 '零房租产业园',
                 '人才孵化',
                 '全域营销',
@@ -113,7 +116,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: '杭州婵梦传媒科技有限公司',
               alternateName: '婵梦科技',
               description:
-                'AI驱动的合伙制企业增长全链路平台，覆盖流量获客、商业转化、品牌出海与跨境增长。',
+                'AI驱动的全链路增长服务商，覆盖AI搜索获客、内容营销、全域流量与商业转化。',
               url: 'https://chanmeng.com',
               email: 'yaoyuan@chanmengtech.cn',
               foundingDate: '2026-05',
@@ -124,7 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressLocality: '杭州',
                 addressRegion: '浙江',
                 addressCountry: 'CN',
-                streetAddress: '萧山区',
+                streetAddress: '萧山区新街街道垦辉六路799号2号楼901-1室',
                 postalCode: '311200',
               },
               geo: {
@@ -143,9 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 name: '中国',
               },
               knowsAbout: [
-                '跨境电商人才孵化',
                 '全域流量投流',
-                '品牌出海全案',
                 '零房租产业园',
                 'AI企业赋能',
                 '财税法律服务',

@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", Arial, sans-serif;
   --font-mono: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
-  --font-heading: var(--font-sans);
+  --font-heading: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei UI", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -129,16 +129,119 @@
   }
   body {
     @apply bg-background text-foreground;
+    letter-spacing: -0.01em;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
   }
+
+  button,
+  input,
+  textarea,
+  select,
+  option {
+    font: inherit;
+    letter-spacing: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  p,
+  span,
+  label {
+    font-family: inherit;
+  }
+}
+
+.apple-nav {
+  background: rgb(255 255 255 / 82%);
+  border-bottom: 1px solid rgb(0 0 0 / 8%);
+  box-shadow: 0 1px 10px rgb(0 0 0 / 3%);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.apple-nav > div {
+  max-width: 68rem;
+  min-height: 48px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.apple-nav [data-brand-mark] {
+  width: 2.75rem;
+  height: 1.75rem;
+  transform: translate(3px, -2px);
+}
+
+.apple-nav [data-brand-name] {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.apple-nav a:not(.rounded-full),
+.apple-nav button:not([aria-label="打开菜单"]):not([aria-label="关闭菜单"]) {
+  font-size: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.apple-nav a.rounded-full {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.75rem;
+  box-shadow: none;
+}
+
+@media (min-width: 1024px) {
+  .apple-nav .apple-nav-links {
+    justify-content: center;
+    gap: 2.4rem;
+    margin-left: auto;
+  }
+
+  .apple-nav .apple-nav-actions { margin-left: 2.25rem; }
 }
 
 ::selection {
   background: rgb(37 99 235 / 0.16);
   color: rgb(15 23 42);
+}
+
+@keyframes partner-marquee-left {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes partner-marquee-right {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+.partner-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: partner-marquee-left 34s linear infinite;
+  will-change: transform;
+}
+
+.partner-marquee-track-reverse {
+  animation-name: partner-marquee-right;
+  animation-duration: 38s;
+}
+
+.partner-marquee:hover .partner-marquee-track {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -147,5 +250,14 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .partner-marquee-track {
+    animation-duration: 48s !important;
+    animation-iteration-count: infinite !important;
+  }
+
+  .partner-marquee-track-reverse {
+    animation-duration: 54s !important;
   }
 }

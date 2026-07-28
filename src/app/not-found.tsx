@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import BrandMark from '@/components/brand-mark'
-import BrandName from '@/components/brand-name'
+import SiteHeader from '@/components/site-header'
 import type { Metadata } from 'next'
 import Footer from '@/components/footer'
 
@@ -13,14 +12,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* 导航条 */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
-          <Link href="/" className="flex items-center gap-3 w-fit">
-            <BrandMark />
-            <BrandName />
-          </Link>
-        </div>
-      </nav>
+      <SiteHeader />
 
       {/* 内容区 */}
       <main className="flex-1 flex items-center justify-center px-4">
@@ -48,7 +40,7 @@ export default function NotFound() {
               返回首页
             </Link>
             <Link
-              href="/#contact"
+              href="/contact"
               className="px-8 py-3.5 rounded-full border-2 border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold transition-all"
             >
               联系我们

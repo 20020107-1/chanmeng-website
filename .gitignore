@@ -11,3 +11,7 @@ next-env.d.ts
 dist/
 .next/
 *.local
+.wrangler/
+commit_*.json
+ref_*.json
+tree_*.json

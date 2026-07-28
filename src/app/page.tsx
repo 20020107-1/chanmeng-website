@@ -8,10 +8,8 @@ export const metadata: Metadata = {
   keywords: [
     '婵梦科技',
     '企业增长服务',
-    '跨境电商',
     'AI赋能',
     '流量运营',
-    '品牌出海',
     '企业服务',
     '杭州',
     '人才孵化',
@@ -29,7 +27,7 @@ export const metadata: Metadata = {
     siteName: '婵梦科技',
     title: '婵梦科技 | AI驱动的合伙制企业增长全链路平台',
     description:
-      '以AI赋能人才，以合伙成就事业。覆盖流量获客、商业转化、品牌出海与跨境增长。',
+      '以AI技术和自研系统为底座，连接内容生产、精准获客、商业转化与持续增长。',
     images: [
       {
         url: '/og-image.svg',
@@ -66,7 +64,7 @@ export default function Page() {
                 name: '婵梦科技是做什么的？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '婵梦科技是AI驱动的合伙制企业增长全链路平台，服务企业客户、内部合伙人与外部合伙人，覆盖流量获客、商业转化、品牌出海与跨境增长。总部位于杭州，成立于2026年。',
+                  text: '婵梦科技是一家AI驱动的全链路增长服务商，面向企业与个人IP提供AI搜索获客、AI内容营销、全域流量运营和商业转化服务。总部位于杭州，成立于2026年。',
                 },
               },
               {
@@ -74,7 +72,7 @@ export default function Page() {
                 name: '婵梦科技的核心服务有哪些？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '核心服务包括流量获客与商业转化、AI工具与效率赋能、品牌出海与跨境增长，并通过合伙人生态连接人才、能力与业务机会。',
+                  text: '核心服务包括AI搜索获客、AI内容营销、全域流量运营和商业转化与增长。',
                 },
               },
               {

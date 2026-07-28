@@ -1,101 +1,110 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import BrandMark from '@/components/brand-mark'
-import BrandName from '@/components/brand-name'
+import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
   title: '核心服务',
-  description: '婵梦科技以商业增长全案为根基，提供AI获客工具、TikTok B2B品牌出海、跨境电商培训与AI跨境带货服务。',
+  description: '婵梦科技提供AI搜索获客、AI内容营销、全域流量运营与商业转化增长服务。',
   robots: { index: true, follow: true },
 }
 
 const SERVICES = [
   {
-    id: 'commercial-growth',
-    title: '商业增长全案',
-    icon: '📡',
-    subtitle: '从流量获客到商业转化，建立可持续增长路径',
+    id: 'ai-search',
+    href: '/services/ai-search-acquisition',
+    title: 'AI搜索获客',
+    icon: 'search',
+    subtitle: '让品牌在AI搜索与智能推荐场景中更容易被发现、理解与选择',
     items: [
-      '短视频IP与内容获客体系',
-      '精准投流与GEO增长支持',
-      '商业转化与增长模式梳理',
-      '从诊断、方案到执行复盘的全链路服务',
+      'GEO生成式引擎优化',
+      'AEO答案引擎优化',
+      'LLMO大模型内容优化',
+      'AI品牌曝光与精准获客',
+      '自研获客系统部署与持续迭代',
     ],
   },
   {
-    id: 'ai-tools',
-    title: 'AI获客工具',
-    icon: '🤖',
-    subtitle: '让AI参与获客、转化与交付的关键流程',
+    id: 'ai-content',
+    href: '/services/ai-content-marketing',
+    title: 'AI内容营销',
+    icon: 'content',
+    subtitle: '以AI提升内容生产效率，让专业能力转化为持续传播的内容资产',
     items: [
-      'AI外呼与客户触达工具',
-      '无人直播与内容自动化能力',
-      'GEO精准获客与定向推广',
-      '数字员工与企业流程提效',
+      '爆款内容策划与生产',
+      '短视频内容运营',
+      '直播内容策划',
+      '个人IP打造',
+      '企业品牌内容建设',
     ],
   },
   {
-    id: 'tiktok-b2b',
-    title: 'TikTok B2B品牌出海',
-    icon: '🌏',
-    subtitle: '面向批发商、代理商、经销商与采购商的品牌出海服务',
+    id: 'omnichannel-growth',
+    href: '/services/omnichannel-traffic-operations',
+    title: '全域流量运营',
+    icon: 'traffic',
+    subtitle: '整合自然流量、付费流量与私域承接，构建完整客户获取体系',
     items: [
-      '海外品牌定位与内容包装',
-      'TikTok B2B渠道搭建',
-      '海外市场推广与客户触达',
-      '持续运营与阶段性复盘',
+      '自然流量增长',
+      '付费流量投放',
+      '短视频与直播获客',
+      '公域流量获取与私域沉淀',
+      '精准客户筛选',
     ],
   },
   {
-    id: 'cross-border-training',
-    title: '跨境电商培训',
-    icon: '🎓',
-    subtitle: '覆盖TikTok Shop、美客多与虾皮的实操成长路径',
+    id: 'commercial-conversion',
+    href: '/services/commercial-conversion-growth',
+    title: '商业转化与增长',
+    icon: 'growth',
+    subtitle: '把流量连接到成交、承接与复购，让增长真正进入经营结果',
     items: [
-      '从0到1的平台认知与开店流程',
-      '运营、投流、客服与选品训练',
-      '理论学习与真实项目实操结合',
-      '持续辅导与岗位能力提升',
-    ],
-  },
-  {
-    id: 'ai-commerce',
-    title: 'AI跨境带货',
-    icon: '🛒',
-    subtitle: '用AI大模型提升跨境内容与带货效率',
-    items: [
-      'AI辅助选品与内容生产',
-      '跨境带货素材规模化制作',
-      '数据反馈与内容持续优化',
-      'AI工具与跨境业务场景结合',
+      '商业定位与模式设计',
+      '产品及盈利体系规划',
+      '线上线下销讲',
+      '私域成交与客户承接',
+      '招商、融资与项目路演',
+      '组织、绩效及执行体系建设',
     ],
   },
 ]
 
+function ServiceIcon({ name }: { name: string }) {
+  const common = {
+    width: 27,
+    height: 27,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.65,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    'aria-hidden': true,
+  }
+
+  if (name === 'search') {
+    return <svg {...common}><circle cx="10.5" cy="10.5" r="5.75" /><path d="m15 15 4.25 4.25" /><path d="M7.6 10.5h5.8M10.5 7.6v5.8" opacity=".55" /></svg>
+  }
+  if (name === 'content') {
+    return <svg {...common}><path d="M7.5 3.75h6.7l3.8 3.8v12.7H7.5z" /><path d="M14.2 3.75v3.8H18M10 11h5.5M10 14.5h5.5M10 18h3.5" /></svg>
+  }
+  if (name === 'traffic') {
+    return <svg {...common}><circle cx="12" cy="12" r="2.2" /><circle cx="12" cy="12" r="6.1" opacity=".7" /><path d="M12 2.5v3.4M21.5 12h-3.4M12 21.5v-3.4M2.5 12h3.4" /></svg>
+  }
+  return <svg {...common}><path d="M4 18.5 9.1 13l3.4 3.1L20 7.5" /><path d="M14.8 7.5H20v5.2" /></svg>
+}
+
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Nav */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <div className="flex items-center gap-6">
-            <Link href="/solutions" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">解决方案</Link>
-            <Link href="/#contact" className="px-4 py-2 rounded-full bg-blue-500 text-white text-sm font-medium hover:bg-blue-600 transition-colors">预约咨询</Link>
-          </div>
-        </div>
-      </nav>
+      <SiteHeader active="/services" />
 
       <main className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
         {/* 标题 */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">核心服务</h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            以商业增长全案为根基，用AI工具、出海服务与人才成长能力支撑业务落地
+            以AI技术和自研系统为底座，连接内容、流量、转化、承接与持续增长
           </p>
         </div>
 
@@ -105,8 +114,8 @@ export default function ServicesPage() {
             <section id={svc.id} key={svc.title} className="scroll-mt-24 bg-white rounded-2xl border border-blue-100 p-8 md:p-10 hover:shadow-lg hover:border-blue-200 transition-all duration-300">
               <div className="flex flex-col md:flex-row gap-6 md:gap-10">
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-3xl">
-                    {svc.icon}
+                  <div className="flex h-16 w-16 items-center justify-center rounded-[20px] border border-blue-100 bg-[#f2f7ff] text-blue-600 shadow-[inset_0_1px_0_rgba(255,255,255,.85)]">
+                    <ServiceIcon name={svc.icon} />
                   </div>
                 </div>
                 <div className="flex-1">
@@ -120,6 +129,7 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
+                  <Link href={svc.href} className="mt-7 inline-flex text-sm font-semibold text-blue-600 hover:text-blue-500">查看服务详情</Link>
                 </div>
               </div>
             </section>

@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import BrandMark from '@/components/brand-mark'
-import BrandName from '@/components/brand-name'
+import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
+import PhoneVerificationFields from '@/components/phone-verification-fields'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', phone: '', industry: '', demand: '' })
@@ -14,6 +14,11 @@ export default function ContactPage() {
   const web3FormsAccessKey = '83098712-93d4-49fb-92c3-27126baab3c9'
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!/^1[3-9]\d{9}$/.test(form.phone)) {
+      e.preventDefault()
+      setSubmitError('请输入有效的中国大陆手机号码。')
+      return
+    }
     if (!formEndpoint) {
       e.preventDefault()
       setSubmitError('在线咨询通道正在配置，请先通过企微邮箱 yaoyuan@chanmengtech.cn 联系我们。')
@@ -24,18 +29,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <div className="flex items-center gap-6">
-            <Link href="/services" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">核心服务</Link>
-            <Link href="/solutions" className="text-sm text-gray-500 hover:text-gray-800 transition-colors">解决方案</Link>
-          </div>
-        </div>
-      </nav>
+      <SiteHeader active="/contact" />
 
       <main className="max-w-5xl mx-auto px-4 md:px-6 py-16 md:py-24">
         <div className="text-center mb-16">
@@ -54,7 +48,7 @@ export default function ContactPage() {
                 <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">📍</div>
                 <div>
                   <p className="font-semibold text-gray-800 text-sm">公司地址</p>
-                  <p className="text-gray-500 text-sm mt-1">浙江省杭州市萧山区（精确地址请预约后获取）</p>
+                  <p className="mt-1 text-sm leading-6 text-gray-500">浙江省杭州市萧山区新街街道垦辉六路799号2号楼901-1室</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -103,21 +97,24 @@ export default function ContactPage() {
                   <input id="name" name="姓名或公司名称" type="text" required value={form.name} onChange={e => setForm({...form, name: e.target.value})}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors" />
                 </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">联系电话 / 微信 *</label>
-                  <input id="phone" name="联系方式" type="text" required value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors" />
-                </div>
+                <PhoneVerificationFields
+                  id="phone"
+                  name="手机号码"
+                  value={form.phone}
+                  onChange={e => {
+                    setForm({ ...form, phone: e.target.value.replace(/\D/g, '') })
+                    setSubmitError('')
+                  }}
+                  error={submitError.includes('手机号码') ? submitError : undefined}
+                  inputClassName="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 outline-none transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                />
                 <div>
                   <label htmlFor="industry" className="block text-sm font-medium text-gray-700 mb-1">所属行业</label>
                   <select id="industry" name="所属行业" value={form.industry} onChange={e => setForm({...form, industry: e.target.value})}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
                     <option value="">请选择</option>
                     <option value="制造业">制造业 / 工厂</option>
-                    <option value="外贸">外贸 / 进出口</option>
-                    <option value="跨境电商">跨境电商</option>
                     <option value="本地服务">本地服务 / 零售</option>
-                    <option value="品牌出海">品牌出海</option>
                     <option value="其他">其他</option>
                   </select>
                 </div>
@@ -131,7 +128,7 @@ export default function ContactPage() {
                   className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-500 hover:to-blue-500 text-white py-4 rounded-lg font-semibold transition shadow-lg shadow-blue-500/20">
                   提交咨询
                 </button>
-                {submitError && <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">{submitError}</p>}
+                {submitError && !submitError.includes('手机号码') && <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">{submitError}</p>}
               </form>
             )}
             <iframe name="_contact-submit" className="hidden" title="联系表单提交" />

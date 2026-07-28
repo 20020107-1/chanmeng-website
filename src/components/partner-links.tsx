@@ -1,14 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink } from 'lucide-react'
 
 // ============ 合作伙伴数据（可自行增删改） ============
-const PARTNER_LINKS = [
-  { name: '阿里巴巴国际站', desc: '全球领先的B2B跨境电商平台', url: 'https://www.alibaba.com', emoji: '🌏' },
-  { name: 'TikTok for Business', desc: '全球短视频营销与品牌推广', url: 'https://www.tiktok.com/business', emoji: '🎵' },
-  { name: 'Shopify', desc: '全球领先的独立站建站平台', url: 'https://www.shopify.com', emoji: '🛒' },
-  { name: 'EMMAS AI', desc: '出海社媒营销通用AI Agent', url: 'https://emmasai.com/', logo: '/emmasai-logo.webp' },
+const PARTNER_LINKS: { name: string; desc: string; url: string; emoji: string; logo?: string }[] = [
+  { name: '企业微信', desc: '客户连接与私域服务工具', url: 'https://work.weixin.qq.com', emoji: '💬' },
+  { name: '腾讯云', desc: '云计算与企业技术服务平台', url: 'https://cloud.tencent.com', emoji: '☁️' },
+  { name: '阿里云', desc: '云计算与AI基础设施平台', url: 'https://www.aliyun.com', emoji: '◉' },
 ]
 
 // ============ 淡入动画容器 ============
@@ -88,7 +86,6 @@ export default function PartnerLinks() {
                 <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-medium
                                  group-hover:bg-blue-100 group-hover:gap-1.5 transition-all">
                   访问官网
-                  <ExternalLink className="w-3 h-3" />
                 </span>
               </a>
             </FadeInView>

@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import BrandMark from '@/components/brand-mark'
-import BrandName from '@/components/brand-name'
+import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
@@ -65,7 +63,7 @@ const SECTIONS = [
     items: [
       '如果您对本隐私政策有任何疑问，或希望行使您的数据权利，请通过以下方式联系我们：',
       '企微邮箱：yaoyuan@chanmengtech.cn',
-      '地址：浙江省杭州市萧山区',
+      '地址：浙江省杭州市萧山区新街街道垦辉六路799号2号楼901-1室',
     ],
   },
   {
@@ -81,17 +79,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* 顶部导航条 */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-blue-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3">
-            <BrandMark />
-            <BrandName />
-          </Link>
-          <Link href="/#contact" className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors">
-            联系我们
-          </Link>
-        </div>
-      </nav>
+      <SiteHeader />
 
       {/* 内容区 */}
       <main className="max-w-3xl mx-auto px-4 md:px-6 py-16 md:py-24">
