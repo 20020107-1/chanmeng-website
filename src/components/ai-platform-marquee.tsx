@@ -1,12 +1,14 @@
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 const AI_PLATFORMS = [
-  { name: 'DeepSeek', icon: '/platform-icons/deepseek.ico', note: '智能搜索与推理', url: 'https://chat.deepseek.com/' },
-  { name: '豆包', icon: '/platform-icons/doubao.png', note: 'AI搜索与智能问答', url: 'https://www.doubao.com/' },
-  { name: '腾讯元宝', icon: '/platform-icons/yuanbao.png', note: '联网搜索与智能问答', url: 'https://yuanbao.tencent.com/' },
-  { name: '通义千问', icon: '/platform-icons/qianwen.png', note: '大模型与智能搜索', url: 'https://www.qianwen.com/' },
-  { name: '文心一言', icon: '/platform-icons/wenxin.ico', note: '生成式搜索与问答', url: 'https://wenxin.baidu.com/' },
-  { name: 'Kimi', icon: '/platform-icons/kimi.ico', note: '长文本与联网搜索', url: 'https://www.kimi.com/' },
-  { name: '纳米AI搜索', icon: '/platform-icons/nami.svg', note: '多模型智能搜索', url: 'https://www.n.cn/' },
-  { name: '秘塔AI搜索', icon: '/platform-icons/metaso.png', note: '无广告智能搜索', url: 'https://metaso.cn/' },
+  { name: 'DeepSeek', icon: `${BASE_PATH}/platform-icons/deepseek.ico`, note: '智能搜索与推理', url: 'https://chat.deepseek.com/' },
+  { name: '豆包', icon: `${BASE_PATH}/platform-icons/doubao.png`, note: 'AI搜索与智能问答', url: 'https://www.doubao.com/' },
+  { name: '腾讯元宝', icon: `${BASE_PATH}/platform-icons/yuanbao.png`, note: '联网搜索与智能问答', url: 'https://yuanbao.tencent.com/' },
+  { name: '通义千问', icon: `${BASE_PATH}/platform-icons/qianwen.png`, note: '大模型与智能搜索', url: 'https://www.qianwen.com/' },
+  { name: '文心一言', icon: `${BASE_PATH}/platform-icons/wenxin.ico`, note: '生成式搜索与问答', url: 'https://wenxin.baidu.com/' },
+  { name: 'Kimi', icon: `${BASE_PATH}/platform-icons/kimi.ico`, note: '长文本与联网搜索', url: 'https://www.kimi.com/' },
+  { name: '纳米AI搜索', icon: `${BASE_PATH}/platform-icons/nami.svg`, note: '多模型智能搜索', url: 'https://www.n.cn/' },
+  { name: '秘塔AI搜索', icon: `${BASE_PATH}/platform-icons/metaso.png`, note: '无广告智能搜索', url: 'https://metaso.cn/' },
 ]
 
 function PlatformCard({ platform }: { platform: (typeof AI_PLATFORMS)[number] }) {
