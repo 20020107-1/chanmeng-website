@@ -18,10 +18,12 @@ else
   echo "[1/5] swap 已存在，跳过"
 fi
 
-# 2. 安装 Docker
+# 2. 安装 Docker（使用 apt，大陆网络更稳定）
 if ! command -v docker &> /dev/null; then
   echo "[2/5] 安装 Docker..."
-  curl -fsSL https://get.docker.com | sudo sh
+  sudo apt-get update
+  sudo apt-get install -y docker.io docker-compose-v2
+  sudo systemctl enable docker --now
   sudo usermod -aG docker $USER
   echo "  ✅ Docker 安装完成"
 else
