@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import AdminDashboard from './admin-dashboard'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { redirect } from 'next/navigation'
