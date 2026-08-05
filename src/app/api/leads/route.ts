@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { NextResponse } from 'next/server'
 import { createLead, readLeads, updateLead } from '@/lib/lead-store'
 import { getAdminSession, isAdminAuthenticated } from '@/lib/admin-auth'

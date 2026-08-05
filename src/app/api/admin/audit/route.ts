@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { NextResponse } from 'next/server'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { readAuditLog } from '@/lib/security-store'

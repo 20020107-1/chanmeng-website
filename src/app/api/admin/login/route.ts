@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { NextResponse } from 'next/server'
 import { securityConfigured, setAdminSession, validAdminCredentials } from '@/lib/admin-auth'
 import { clientIp, sameOriginRequest } from '@/lib/request-security'
