@@ -1,22 +1,24 @@
 'use client'
 
+import Link from 'next/link'
+
 export default function FloatingCta() {
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-blue-200 px-4 py-3 shadow-lg">
-      <div className="flex gap-3 max-w-lg mx-auto">
-        <button
-          onClick={() => scrollTo('contact')}
-          className="flex-1 text-center py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold text-sm shadow-lg shadow-blue-500/20"
+    <div className="mobile-floating-cta md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#fbf8f1]/95 backdrop-blur-lg border-t border-[#d9cebb] px-3 pt-2 shadow-[0_-8px_30px_rgba(57,43,24,.08)]">
+      <div className="flex gap-2.5 max-w-lg mx-auto">
+        <Link
+          href="/contact"
+          className="flex min-h-11 flex-1 items-center justify-center rounded-full bg-[#25211c] text-center text-sm font-semibold text-white shadow-[0_8px_20px_rgba(44,36,26,.14)]"
         >
-          立即咨询
-        </button>
+          预约诊断
+        </Link>
         <button
           onClick={() => scrollTo('partner')}
-          className="flex-1 text-center py-3 rounded-full border border-blue-300 text-blue-600 font-semibold text-sm hover:bg-blue-50 transition"
+          className="flex min-h-11 flex-1 items-center justify-center rounded-full border border-[#c9aa76] bg-white/70 text-center text-sm font-semibold text-[#795a2e] transition hover:bg-[#f4e9d7]"
         >
           加入合伙人
         </button>

@@ -35,7 +35,7 @@ export default function CaseLibrary({ cases }: { cases: CaseStudy[] }) {
             href={`/cases/${item.slug}`}
             className="group grid gap-3 border-b border-gray-300 py-6 transition-colors hover:bg-white md:grid-cols-[82px_minmax(0,1fr)_290px] md:items-center md:px-4"
           >
-            <span className="text-xl font-semibold tracking-[-0.025em] text-blue-600 md:text-2xl">{String(index + 1).padStart(2, '0')}</span>
+            <span className="text-xl font-semibold tracking-[-0.025em] text-[#E2492F] md:text-2xl">{String(index + 1).padStart(2, '0')}</span>
             <div>
               <p className="text-xs text-gray-400">{item.category} · {item.industry}</p>
               <h2 className="mt-1.5 text-xl font-semibold tracking-[-0.02em] text-[#1d1d1f] md:text-2xl">{item.title}</h2>

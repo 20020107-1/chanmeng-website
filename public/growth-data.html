@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>婵梦科技 · 连续页面动效预览</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #0b0c0e; }
+    iframe {
+      width: 100%;
+      display: block;
+      border: 0;
+    }
+    #home-frame {
+      height: 100svh;
+      min-height: 680px;
+      background: #f7f2e8;
+    }
+    #showcase-frame {
+      min-height: 100vh;
+      background: #0b0c0e;
+    }
+    @media (max-width: 640px) {
+      #home-frame { min-height: 620px; }
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    id="home-frame"
+    src="/original-home"
+    title="婵梦科技官网首页"
+    scrolling="no"
+  ></iframe>
+  <iframe
+    id="showcase-frame"
+    src="/growth-data-showcase.html"
+    title="连续滚动动效展示"
+    scrolling="no"
+  ></iframe>
+  <script>
+    const home = document.querySelector("#home-frame");
+    const showcase = document.querySelector("#showcase-frame");
+
+    home.addEventListener("load", () => {
+      home.contentWindow.addEventListener("wheel", event => {
+        window.scrollBy({ top: event.deltaY, left: 0, behavior: "auto" });
+      }, { passive: true });
+    });
+
+    function syncShowcaseHeight() {
+      const documentElement = showcase.contentDocument?.documentElement;
+      const body = showcase.contentDocument?.body;
+      if (!documentElement || !body) return;
+      showcase.style.height = `${Math.max(
+        documentElement.scrollHeight,
+        body.scrollHeight
+      )}px`;
+    }
+
+    showcase.addEventListener("load", () => {
+      syncShowcaseHeight();
+      const observer = new ResizeObserver(syncShowcaseHeight);
+      observer.observe(showcase.contentDocument.documentElement);
+    });
+
+    window.addEventListener("resize", syncShowcaseHeight);
+  </script>
+</body>
+</html>

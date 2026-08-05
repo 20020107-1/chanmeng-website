@@ -2,152 +2,89 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
+import { SERVICE_DETAILS } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '核心服务',
-  description: '婵梦科技提供AI搜索获客、AI内容营销、全域流量运营与商业转化增长服务。',
+  title: '企业增长闭环｜核心服务',
+  description: '婵梦科技通过商业诊断、产品内容、GEO获客、短视频增量、成交转化与招商增长六个阶段，为企业建立结构化增长闭环。',
   robots: { index: true, follow: true },
-}
-
-const SERVICES = [
-  {
-    id: 'ai-search',
-    href: '/services/ai-search-acquisition',
-    title: 'AI搜索获客',
-    icon: 'search',
-    subtitle: '让品牌在AI搜索与智能推荐场景中更容易被发现、理解与选择',
-    items: [
-      'GEO生成式引擎优化',
-      'AEO答案引擎优化',
-      'LLMO大模型内容优化',
-      'AI品牌曝光与精准获客',
-      '自研获客系统部署与持续迭代',
-    ],
-  },
-  {
-    id: 'ai-content',
-    href: '/services/ai-content-marketing',
-    title: 'AI内容营销',
-    icon: 'content',
-    subtitle: '以AI提升内容生产效率，让专业能力转化为持续传播的内容资产',
-    items: [
-      '爆款内容策划与生产',
-      '短视频内容运营',
-      '直播内容策划',
-      '个人IP打造',
-      '企业品牌内容建设',
-    ],
-  },
-  {
-    id: 'omnichannel-growth',
-    href: '/services/omnichannel-traffic-operations',
-    title: '全域流量运营',
-    icon: 'traffic',
-    subtitle: '整合自然流量、付费流量与私域承接，构建完整客户获取体系',
-    items: [
-      '自然流量增长',
-      '付费流量投放',
-      '短视频与直播获客',
-      '公域流量获取与私域沉淀',
-      '精准客户筛选',
-    ],
-  },
-  {
-    id: 'commercial-conversion',
-    href: '/services/commercial-conversion-growth',
-    title: '商业转化与增长',
-    icon: 'growth',
-    subtitle: '把流量连接到成交、承接与复购，让增长真正进入经营结果',
-    items: [
-      '商业定位与模式设计',
-      '产品及盈利体系规划',
-      '线上线下销讲',
-      '私域成交与客户承接',
-      '招商、融资与项目路演',
-      '组织、绩效及执行体系建设',
-    ],
-  },
-]
-
-function ServiceIcon({ name }: { name: string }) {
-  const common = {
-    width: 27,
-    height: 27,
-    viewBox: '0 0 24 24',
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 1.65,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-    'aria-hidden': true,
-  }
-
-  if (name === 'search') {
-    return <svg {...common}><circle cx="10.5" cy="10.5" r="5.75" /><path d="m15 15 4.25 4.25" /><path d="M7.6 10.5h5.8M10.5 7.6v5.8" opacity=".55" /></svg>
-  }
-  if (name === 'content') {
-    return <svg {...common}><path d="M7.5 3.75h6.7l3.8 3.8v12.7H7.5z" /><path d="M14.2 3.75v3.8H18M10 11h5.5M10 14.5h5.5M10 18h3.5" /></svg>
-  }
-  if (name === 'traffic') {
-    return <svg {...common}><circle cx="12" cy="12" r="2.2" /><circle cx="12" cy="12" r="6.1" opacity=".7" /><path d="M12 2.5v3.4M21.5 12h-3.4M12 21.5v-3.4M2.5 12h3.4" /></svg>
-  }
-  return <svg {...common}><path d="M4 18.5 9.1 13l3.4 3.1L20 7.5" /><path d="M14.8 7.5H20v5.2" /></svg>
 }
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#fbfaf6] text-[#211d18]">
       <SiteHeader active="/services" />
+      <main>
+        <header className="border-b border-[#ded5c7] px-5 py-16 md:px-8 md:py-24">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-semibold tracking-[0.22em] text-[#E2492F]">CHANMENG GROWTH LOOP</p>
+            <div className="mt-6 grid gap-7 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+              <h1 className="max-w-4xl text-4xl font-semibold leading-[1.07] tracking-[-0.055em] md:text-6xl">
+                六步企业增长闭环
+                <span className="mt-2 block text-[#E2492F]">差异化 × 流量 × 转化 × 增效</span>
+              </h1>
+              <p className="max-w-xl text-base leading-8 text-[#6d655b] md:text-lg">
+                从商业诊断开始，依次建立产品与内容、核心获客、增量触达、成交承接和业务复制。每一阶段有明确问题、交付物与结果判断。
+              </p>
+            </div>
+          </div>
+        </header>
 
-      <main className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
-        {/* 标题 */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">核心服务</h1>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-            以AI技术和自研系统为底座，连接内容、流量、转化、承接与持续增长
-          </p>
-        </div>
+        <section className="px-5 py-14 md:px-8 md:py-20" aria-label="增长闭环总览">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 grid gap-5 border-t border-[#d9cebb] pt-6 md:grid-cols-[90px_1fr_420px]">
+              <span className="text-sm font-semibold text-[#E2492F]">01—06</span>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] md:text-4xl">从问题出发，按阶段推进</h2>
+              <p className="text-sm leading-7 text-[#6d655b]">无需一次购买全部服务。我们会先判断企业当前所处阶段，再确定优先投入的模块。</p>
+            </div>
 
-        {/* 服务卡片 */}
-        <div className="space-y-8">
-          {SERVICES.map((svc, i) => (
-            <section id={svc.id} key={svc.title} className="scroll-mt-24 bg-white rounded-2xl border border-blue-100 p-8 md:p-10 hover:shadow-lg hover:border-blue-200 transition-all duration-300">
-              <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="flex-shrink-0">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-[20px] border border-blue-100 bg-[#f2f7ff] text-blue-600 shadow-[inset_0_1px_0_rgba(255,255,255,.85)]">
-                    <ServiceIcon name={svc.icon} />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{svc.title}</h2>
-                  <p className="text-blue-600 font-medium text-sm mb-4">{svc.subtitle}</p>
-                  <ul className="grid md:grid-cols-2 gap-3">
-                    {svc.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-gray-600 text-sm">
-                        <span className="text-blue-400 mt-0.5 flex-shrink-0">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={svc.href} className="mt-7 inline-flex text-sm font-semibold text-blue-600 hover:text-blue-500">查看服务详情</Link>
-                </div>
-              </div>
-            </section>
-          ))}
-        </div>
+            <div className="divide-y divide-[#ded5c7] border-y border-[#ded5c7]">
+              {SERVICE_DETAILS.map((service, index) => (
+                <article key={service.slug} id={service.slug} className="scroll-mt-24">
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="group grid gap-6 py-9 transition-colors hover:bg-[#F2EFE9] md:grid-cols-[86px_minmax(240px,.8fr)_minmax(320px,1.2fr)_170px] md:items-start md:px-6"
+                  >
+                    <span className="text-3xl font-light tracking-[-0.05em] text-[#E2492F]">{String(index + 1).padStart(2, '0')}</span>
+                    <div>
+                      <p className="text-[11px] font-semibold tracking-[0.16em] text-[#E2492F]">{service.eyebrow.split('·')[1]}</p>
+                      <h2 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.035em]">{service.title}</h2>
+                      <p className="mt-3 text-sm font-medium leading-6 text-[#E2492F]">{service.statement}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm leading-7 text-[#6d655b]">{service.intro}</p>
+                      <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+                        <div>
+                          <dt className="text-xs text-[#9b9185]">核心服务</dt>
+                          <dd className="mt-2 text-sm leading-6 text-[#3f3932]">{service.modules.map((item) => item.title).join('｜')}</dd>
+                        </div>
+                        <div>
+                          <dt className="text-xs text-[#9b9185]">预期价值</dt>
+                          <dd className="mt-2 text-sm leading-6 text-[#3f3932]">{service.outcomes.map((item) => item.title).join('｜')}</dd>
+                        </div>
+                      </dl>
+                    </div>
+                    <span className="text-sm font-medium text-[#E2492F] md:text-right">查看阶段详情</span>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        {/* CTA */}
-        <section className="text-center mt-16">
-          <div className="bg-gradient-to-r from-blue-50 to-sky-50 rounded-2xl p-10 border border-blue-200">
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">需要定制化服务方案？</h2>
-            <p className="text-gray-600 mb-6">点击下方按钮，告诉我们您的需求，我们将为您匹配最合适的方案。</p>
-            <Link href="/contact" className="inline-block px-8 py-3.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-blue-500/25 transition-all">
-              联系我们
+        <section className="border-y border-[#ded5c7] bg-[#F2EFE9] px-5 py-14 md:px-8 md:py-20">
+          <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1fr_auto] md:items-end">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[#E2492F]">BUSINESS FOUNDATION</p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] md:text-5xl">商业底层体系，是效果保障与增效底座</h2>
+              <p className="mt-5 max-w-3xl text-base leading-8 text-[#6d655b]">定位、产品、转化、招商与执行辅导贯穿整个闭环，让流量投入最终回到真实经营结果。</p>
+            </div>
+            <Link href="/contact" className="inline-flex w-fit rounded-full bg-[#211d18] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#C93A26]">
+              预约业务诊断
             </Link>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   )

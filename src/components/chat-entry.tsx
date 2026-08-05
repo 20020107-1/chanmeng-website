@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 export default function ChatEntry() {
   const [open, setOpen] = useState(false)
@@ -31,7 +32,7 @@ export default function ChatEntry() {
               <p className="text-gray-400 text-xs">请留下您的联系方式，<br />我们的顾问将在 30 分钟内与您联系</p>
             </div>
             <div className="px-5 pb-5">
-              <a href="#contact" onClick={() => setOpen(false)} className="block w-full text-center py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm transition">填写咨询表单</a>
+              <Link href="/contact" onClick={() => setOpen(false)} className="block w-full text-center py-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium text-sm transition">进入预约诊断页面</Link>
             </div>
           </motion.div>
         )}

@@ -4,6 +4,7 @@
 .DS_Store
 *.pem
 .env*
+!.env.example
 .vercel
 *.tsbuildinfo
 next-env.d.ts
@@ -15,3 +16,14 @@ dist/
 commit_*.json
 ref_*.json
 tree_*.json
+
+# Runtime security state: never commit sessions, attempts or audit data
+/data/admin-sessions.json
+/data/admin-login-attempts.json
+/data/admin-audit-log.json
+/data/form-rate-limits.json
+/.admin-security-credentials.txt
+
+# Logs
+*.log
+dev-server.*.log

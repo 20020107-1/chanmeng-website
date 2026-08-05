@@ -17,14 +17,14 @@ const featuredCases = [
 ]
 
   return (
-    <section id="cases" className="py-16 md:py-24 px-4 md:px-6 bg-white" aria-label="客户案例">
+    <section id="cases" className="mobile-home-section py-16 md:py-24 px-4 md:px-6 bg-white" aria-label="客户案例">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
+        <div className="mobile-cases-heading text-center mb-14">
           <p className="text-base font-semibold tracking-[0.08em] text-blue-600 mb-3">项目实践</p>
           <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold text-slate-900">从问题出发，用交付建立信任</motion.h2>
           <p className="mt-4 text-gray-500 max-w-2xl mx-auto">以下展示不同业务场景下的服务路径。具体数据和交付范围以双方确认的项目方案为准。</p>
         </div>
-        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mobile-case-grid mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featuredCases.map((c, i) => {
             const clr = colorMap[c.accent]
             return (

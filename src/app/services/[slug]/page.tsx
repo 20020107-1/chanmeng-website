@@ -3,7 +3,10 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
+import JsonLd from '@/components/json-ld'
+import FaqAccordion from '@/components/faq-accordion'
 import { getServiceDetail, SERVICE_DETAILS } from '@/data/services'
+import { ORGANIZATION_ID, absoluteUrl } from '@/lib/seo'
 
 export function generateStaticParams() {
   return SERVICE_DETAILS.map((item) => ({ slug: item.slug }))
@@ -11,7 +14,19 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const item = getServiceDetail((await params).slug)
-  return item ? { title: `${item.title}｜婵梦科技`, description: item.intro } : {}
+  if (!item) return {}
+  const url = absoluteUrl(`/services/${item.slug}`)
+  return {
+    title: `${item.title}｜婵梦科技`,
+    description: item.intro,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'website',
+      title: `${item.title}｜婵梦科技`,
+      description: item.intro,
+      url,
+    },
+  }
 }
 
 const navItems = [
@@ -29,7 +44,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     <div className="min-h-screen bg-white text-[#1d1d1f]">
       <SiteHeader active="/services" />
       <main>
-        <header id="overview" className="border-b border-black/[0.07] bg-[#f5f5f7]">
+        <header id="overview" className="border-b border-[#e7dfd1] bg-[#f8f5ee]">
           <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-16">
             <div className="flex items-center gap-4 border-b border-black/[0.08] pb-5">
               <span className="text-sm font-semibold text-blue-600">{String(index + 1).padStart(2, '0')}</span>
@@ -41,12 +56,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 <h1 className="max-w-4xl text-4xl font-semibold leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[56px]">{item.statement}</h1>
                 <p className="mt-6 max-w-3xl text-base leading-8 text-gray-600 md:text-lg">{item.intro}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href="/contact" className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-500">咨询这项服务</Link>
+                  <Link href="/contact" className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#E2492F] hover:shadow-[0_12px_26px_rgba(226,73,47,.28)] active:translate-y-0 active:scale-[0.98]">咨询这项服务</Link>
                   <Link href="/cases" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1d1d1f] shadow-[inset_0_0_0_1px_rgba(0,0,0,.12)] transition-colors hover:bg-[#e8e8ed]">查看客户案例</Link>
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-[22px] border border-black/[0.08] bg-white">
+              <div className="overflow-hidden rounded-[22px] border border-[#d9c8a8] bg-white/75 shadow-[0_18px_50px_rgba(80,55,25,.07)]">
                 <div className="flex items-center justify-between px-6 py-5">
                   <p className="text-sm font-semibold text-[#1d1d1f]">服务价值</p>
                   <span className="text-xs text-gray-400">{item.title}</span>
@@ -70,7 +85,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="mx-auto grid max-w-[1480px] gap-12 px-5 py-16 md:px-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-20 lg:py-24">
           <aside className="hidden lg:block">
             <nav className="sticky top-24 border-l border-gray-200 py-2" aria-label="服务详情目录">
-              {navItems.map(([id, label]) => <a key={id} href={`#${id}`} className="block border-l-2 border-transparent px-5 py-3 text-sm text-gray-500 transition-colors hover:border-blue-600 hover:text-blue-600">{label}</a>)}
+              {navItems.map(([id, label]) => <a key={id} href={`#${id}`} className="block border-l-2 border-transparent px-5 py-3 text-sm text-gray-500 transition-colors duration-300 hover:border-[#E2492F] hover:text-blue-600">{label}</a>)}
             </nav>
           </aside>
 
@@ -109,9 +124,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {item.painPoints.slice(0, 3).map((point) => <li key={point} className="flex gap-3 text-sm leading-7 text-gray-600"><span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-gray-400" />{point}</li>)}
                   </ul>
                 </div>
-                <div className="border-t border-blue-100 bg-[#eef5ff] p-7 text-[#1d1d1f] md:border-l md:border-t-0 md:p-10">
+                <div className="border-t border-blue-100 bg-[#F9E9E5] p-7 text-[#1d1d1f] md:border-l md:border-t-0 md:p-10">
                   <p className="text-sm font-semibold text-blue-600">建立体系之后</p>
-                  <h2 className="mt-4 text-2xl font-semibold tracking-[-0.035em] text-[#16386f]">客户更容易理解价值，<br />团队更清楚下一步怎么做</h2>
+                  <h2 className="mt-4 text-2xl font-semibold tracking-[-0.035em] text-[#8F2B18]">客户更容易理解价值，<br />团队更清楚下一步怎么做</h2>
                   <ul className="mt-8 space-y-5">
                     {item.outcomes.map((outcome) => <li key={outcome.title}><strong className="block text-base text-[#1d1d1f]">{outcome.title}</strong><span className="mt-1 block text-sm leading-6 text-gray-600">{outcome.description}</span></li>)}
                   </ul>
@@ -127,7 +142,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               </div>
               <div className="mt-12 grid gap-5 sm:grid-cols-2">
                 {item.modules.map((module, moduleIndex) => (
-                  <div key={module.title} className="min-h-[220px] rounded-[24px] border border-blue-100 bg-[#f7faff] p-7 transition-colors hover:border-blue-300 md:p-8">
+                  <div key={module.title} className="min-h-[220px] rounded-[24px] border border-blue-100 bg-[#FBF4F1] p-7 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#E2492F] hover:shadow-[0_16px_36px_rgba(226,73,47,.12)] md:p-8">
                     <span className="text-sm font-semibold tracking-[0.08em] text-blue-600">{String(moduleIndex + 1).padStart(2, '0')}</span>
                     <h3 className="mt-8 text-2xl font-semibold tracking-[-0.03em]">{module.title}</h3>
                     <p className="mt-4 text-base leading-7 text-gray-600">{module.description}</p>
@@ -160,7 +175,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 <div className="grid gap-px overflow-hidden rounded-[26px] border border-gray-200 bg-gray-200 sm:grid-cols-2">
                   {[
                     ['从业务问题出发', '先诊断客户、产品、流量和承接现状，再决定优先服务范围，避免为了使用工具而使用工具。'],
-                    ['四项业务协同', `把${item.title}与内容、流量和商业转化连接起来，减少不同供应商各自推进造成的断层。`],
+                    ['六阶段闭环协同', `把${item.title}与前后阶段连接起来，减少定位、内容、流量、销售和经营各自推进造成的断层。`],
                     ['交付过程透明', '明确阶段任务、交付物、双方责任和复盘依据，让客户知道项目正在解决什么问题。'],
                     ['帮助团队沉淀', '将方法、内容、数据和流程留在企业内部，让项目结束后仍然能够继续迭代。'],
                   ].map(([title, description], advantageIndex) => (
@@ -181,7 +196,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <h2 className="text-3xl font-semibold tracking-[-0.04em]">先找出最值得解决的问题，<br />再决定投入多少资源</h2>
                   <p className="mt-4 max-w-2xl text-base leading-7 text-gray-600">无需一开始购买全部服务。我们会先根据企业现状判断优先级，给出适合当前阶段的推进建议。</p>
                 </div>
-                <Link href="/contact" className="inline-flex w-fit shrink-0 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white hover:bg-blue-500">预约初步沟通</Link>
+                <Link href="/contact" className="inline-flex w-fit shrink-0 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#E2492F] hover:shadow-[0_14px_30px_rgba(226,73,47,.30)] active:translate-y-0 active:scale-[0.98]">预约初步沟通</Link>
               </div>
             </section>
 
@@ -208,7 +223,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     {item.audience.map((text) => <li key={text} className="py-6 text-lg leading-8">{text}</li>)}
                   </ul>
                 </div>
-                <div className="rounded-[26px] border border-blue-100 bg-[#eef5ff] p-8 text-[#1d1d1f] md:p-10">
+                <div className="rounded-[26px] border border-blue-100 bg-[#F9E9E5] p-8 text-[#1d1d1f] md:p-10">
                   <p className="text-sm font-semibold text-blue-600">核心交付</p>
                   <div className="mt-8 space-y-3">
                     {item.deliverables.map((text, deliveryIndex) => (
@@ -227,26 +242,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </section>
 
             <section id="faq" className="scroll-mt-24 border-t border-gray-300 py-20">
-              <p className="text-sm font-semibold text-blue-600">常见问题</p>
+              <p className="text-sm font-semibold text-[#E2492F]">常见问题</p>
               <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] md:text-5xl">合作前经常被问到</h2>
-              <div className="mt-10 divide-y divide-gray-200 border-y border-gray-200">
-                {item.faqs.map((faq, faqIndex) => (
-                  <details key={faq.question} className="group py-6">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold">
-                      <span><span className="mr-5 text-blue-600">{String(faqIndex + 1).padStart(2, '0')}</span>{faq.question}</span>
-                      <span className="text-2xl font-light text-gray-400 transition-transform group-open:rotate-45">+</span>
-                    </summary>
-                    <p className="max-w-3xl pb-2 pl-12 pt-5 text-base leading-8 text-gray-600">{faq.answer}</p>
-                  </details>
-                ))}
-              </div>
+              <FaqAccordion faqs={item.faqs} />
             </section>
 
-            <section className="rounded-[26px] border border-blue-100 bg-[#eef5ff] px-7 py-10 text-[#1d1d1f] md:px-10 md:py-12">
-              <p className="text-sm font-semibold text-blue-600">下一步</p>
+            <section className="rounded-[26px] border border-[#F0C9C0] bg-[#F9E9E5] px-7 py-10 text-[#1d1d1f] md:px-10 md:py-12">
+              <p className="text-sm font-semibold text-[#E2492F]">下一步</p>
               <div className="mt-4 flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
-                <div><h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#16386f]">先判断问题，再确定服务范围</h2><p className="mt-4 max-w-2xl text-base leading-7 text-gray-600">提交企业现状和需求，我们会结合业务目标、现有资源与优先级进行初步判断。</p></div>
-                <Link href="/contact" className="inline-flex w-fit shrink-0 rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white hover:bg-blue-500">联系销售</Link>
+                <div><h2 className="text-3xl font-semibold tracking-[-0.04em] text-[#8F2B18]">先判断问题，再确定服务范围</h2><p className="mt-4 max-w-2xl text-base leading-7 text-gray-600">提交企业现状和需求，我们会结合业务目标、现有资源与优先级进行初步判断。</p></div>
+                <Link href="/contact" className="inline-flex w-fit shrink-0 rounded-full bg-[#E2492F] px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#C93A26] hover:shadow-[0_14px_30px_rgba(226,73,47,.30)] active:translate-y-0 active:scale-[0.98]">预约诊断</Link>
               </div>
             </section>
 
@@ -258,6 +263,50 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </main>
       <Footer />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'Service',
+              '@id': `${absoluteUrl(`/services/${item.slug}`)}#service`,
+              name: item.title,
+              description: item.intro,
+              url: absoluteUrl(`/services/${item.slug}`),
+              provider: { '@id': ORGANIZATION_ID },
+              areaServed: { '@type': 'Country', name: '中国' },
+              serviceType: item.title,
+              audience: item.audience.map((name) => ({
+                '@type': 'Audience',
+                name,
+              })),
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: '首页',
+                  item: absoluteUrl('/'),
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: '核心服务',
+                  item: absoluteUrl('/services'),
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: item.title,
+                  item: absoluteUrl(`/services/${item.slug}`),
+                },
+              ],
+            },
+          ],
+        }}
+      />
     </div>
   )
 }

@@ -3,23 +3,35 @@
 import Link from 'next/link'
 import { NAV_GROUPS } from '@/data/navigation'
 
-export default function NavigationDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function NavigationDrawer({
+  open,
+  onClose,
+  onPointerEnter,
+  onPointerLeave,
+}: {
+  open: boolean
+  onClose: () => void
+  onPointerEnter?: () => void
+  onPointerLeave?: () => void
+}) {
   return (
     <>
       <button type="button" aria-label="关闭导航遮罩" tabIndex={open ? 0 : -1} onClick={onClose}
-        className={`fixed inset-0 top-[49px] z-40 bg-black/10 transition-opacity duration-300 ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`} />
+        className={`fixed inset-0 top-[72px] z-40 bg-transparent transition-opacity duration-200 ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`} />
       <aside aria-label="全部导航" aria-hidden={!open}
-        className={`fixed bottom-0 right-0 top-[49px] z-50 w-[min(420px,100vw)] overflow-y-auto border-l border-black/5 bg-white/98 px-8 py-9 shadow-[-24px_0_70px_rgba(0,0,0,.10)] transition-transform duration-300 ease-[cubic-bezier(.32,.72,0,1)] md:px-10 ${open ? 'translate-x-0' : 'translate-x-full'}`}>
-        <p className="mb-8 text-[11px] font-medium tracking-[0.14em] text-gray-400">全部导航</p>
-        <div className="space-y-9">
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={onPointerLeave}
+        className={`fixed right-[max(8px,calc((100vw-1144px)/2))] top-[60px] z-50 w-[244px] origin-top-right overflow-y-auto rounded-[16px] border border-[#2d2926]/[0.08] bg-[#fbfaf6] px-6 py-5 shadow-[0_18px_55px_rgba(45,41,38,.16)] transition-[opacity,transform] duration-200 ease-[cubic-bezier(.22,1,.36,1)] ${open ? 'pointer-events-auto translate-y-0 scale-100 opacity-100' : 'pointer-events-none -translate-y-1 scale-[0.985] opacity-0'}`}>
+        <div className="space-y-4">
           {NAV_GROUPS.map((group) => (
-            <section key={group.title} className="border-b border-gray-100 pb-8 last:border-0">
-              <p className="mb-3 text-xs font-medium text-gray-400">{group.title}</p>
+            <section key={group.title} className="border-b border-[#2d2926]/12 pb-4 last:border-0 last:pb-0">
+              <p className="mb-2.5 text-[13px] font-medium text-[#8b857e]">{group.title}</p>
               <div className="flex flex-col">
                 {group.links.map((item) => (
                   <Link key={item.href} href={item.href} tabIndex={open ? 0 : -1} onClick={onClose}
-                    className={`group flex items-center justify-between py-2.5 text-xl font-medium tracking-[-0.03em] transition-colors ${item.href === '/contact' ? 'text-blue-600 hover:text-blue-700' : 'text-gray-900 hover:text-blue-600'}`}>
-                    {item.name}
+                    className="group flex items-center justify-between py-1 font-serif text-[17px] font-normal leading-tight tracking-[-0.02em] text-[#292521]">
+                    <span className="decoration-[#292521] decoration-[1px] underline-offset-[5px] group-hover:underline">{item.name}</span>
+                    <span className="shrink-0 font-sans text-[12px] font-normal leading-none text-[#aaa39a] transition-colors group-hover:text-[#514a43]" aria-hidden="true">↗</span>
                   </Link>
                 ))}
               </div>

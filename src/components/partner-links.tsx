@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 // ============ 合作伙伴数据（可自行增删改） ============
 const PARTNER_LINKS: { name: string; desc: string; url: string; emoji: string; logo?: string }[] = [
@@ -101,9 +102,9 @@ export default function PartnerLinks() {
         >
           <div className="inline-flex items-center gap-2 bg-white border border-blue-200 rounded-full px-5 py-2.5 shadow-sm">
             <span className="text-gray-400 text-sm">想要互换友链？</span>
-            <a href="#contact" className="text-blue-500 hover:text-blue-600 font-medium text-sm underline underline-offset-2 transition-colors">
-              联系我们
-            </a>
+            <Link href="/contact" className="text-blue-500 hover:text-blue-600 font-medium text-sm underline underline-offset-2 transition-colors">
+              预约诊断
+            </Link>
           </div>
         </motion.div>
       </div>

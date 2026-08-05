@@ -6,7 +6,7 @@ import { SOLUTION_ARTICLES } from '@/data/solutions'
 
 export const metadata: Metadata = {
   title: '行业方案',
-  description: '婵梦科技围绕AI搜索获客、内容营销、全域流量与商业转化提供定制化增长方案。',
+  description: '婵梦科技围绕商业诊断、产品内容、GEO获客、短视频增量、成交转化与招商增长提供结构化企业增长方案。',
   robots: { index: true, follow: true },
 }
 

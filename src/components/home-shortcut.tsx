@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 export default function HomeShortcut() {
   const pathname = usePathname()
 
-  if (pathname === '/') return null
+  if (pathname === '/' || pathname.startsWith('/admin')) return null
 
   return (
     <Link

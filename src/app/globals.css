@@ -49,8 +49,8 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: #fbfaf6;
+  --foreground: #211e19;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -165,16 +165,16 @@
 }
 
 .apple-nav {
-  background: rgb(255 255 255 / 82%);
-  border-bottom: 1px solid rgb(0 0 0 / 8%);
-  box-shadow: 0 1px 10px rgb(0 0 0 / 3%);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgb(245 242 235 / 96%);
+  border-bottom: 1px solid rgb(45 41 38 / 10%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 70%);
+  backdrop-filter: saturate(150%) blur(18px);
+  -webkit-backdrop-filter: saturate(150%) blur(18px);
 }
 
 .apple-nav > div {
-  max-width: 68rem;
-  min-height: 48px;
+  max-width: 70rem;
+  min-height: 64px;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -189,12 +189,14 @@
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+  color: #211b16;
+  white-space: nowrap;
 }
 
 .apple-nav a:not(.rounded-full),
 .apple-nav button:not([aria-label="打开菜单"]):not([aria-label="关闭菜单"]) {
-  font-size: 0.75rem;
-  letter-spacing: -0.01em;
+  font-size: 0.875rem;
+  letter-spacing: -0.015em;
 }
 
 .apple-nav a.rounded-full {
@@ -206,17 +208,222 @@
 @media (min-width: 1024px) {
   .apple-nav .apple-nav-links {
     justify-content: center;
-    gap: 2.4rem;
+    gap: 1.9rem;
     margin-left: auto;
   }
 
-  .apple-nav .apple-nav-actions { margin-left: 2.25rem; }
+  .apple-nav .apple-nav-actions { margin-left: 1.8rem; }
+}
+
+@media (max-width: 767px) {
+  .apple-nav [data-brand-name] {
+    max-width: 8.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.74rem;
+  }
+
+  .apple-nav .claude-brand > span[aria-hidden="true"] {
+    margin-left: 0.55rem;
+    margin-right: 0.55rem;
+    height: 1.15rem;
+  }
+
+  .apple-nav .claude-sales {
+    display: none;
+  }
+
+  .apple-nav .claude-menu {
+    width: 2.25rem;
+    padding: 0;
+    justify-content: center;
+    font-size: 0 !important;
+  }
+}
+
+.apple-nav .claude-sales,
+.apple-nav .claude-menu {
+  font-size: 0.78rem !important;
+}
+
+.claude-nav-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #E2492F;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 260ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.claude-nav-link:hover .claude-nav-label::after,
+.claude-nav-label.is-active::after {
+  transform: scaleX(1);
 }
 
 ::selection {
-  background: rgb(37 99 235 / 0.16);
-  color: rgb(15 23 42);
+  background: rgb(183 138 69 / 24%);
+  color: #211e19;
 }
+
+.paper-texture {
+  background:
+    radial-gradient(circle at 18% 12%, rgb(255 255 255 / 90%), transparent 34%),
+    radial-gradient(circle at 78% 74%, rgb(196 165 112 / 10%), transparent 38%),
+    repeating-linear-gradient(0deg, rgb(85 66 42 / 1.5%) 0, rgb(85 66 42 / 1.5%) 1px, transparent 1px, transparent 4px);
+}
+
+#home {
+  background-color: #f8f3ea;
+  background-image: none !important;
+}
+
+#home::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+  background:
+    radial-gradient(ellipse 62% 52% at 50% 43%, rgb(255 252 244 / 18%), transparent 70%),
+    rgb(255 250 240 / 8%);
+  backdrop-filter: blur(.28px);
+  -webkit-backdrop-filter: blur(.28px);
+  pointer-events: none;
+}
+
+
+.ink-display {
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  font-weight: 700;
+}
+
+.footer-brand [data-brand-name] {
+  color: #111111 !important;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: clamp(0.875rem, 1.15vw, 1rem);
+  line-height: 1.2;
+}
+
+.admin-input {
+  height: 3rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(45 41 38 / 10%);
+  background: #fff;
+  padding: 0 0.875rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 180ms, box-shadow 180ms;
+}
+
+.admin-input:focus,
+.admin-textarea:focus {
+  border-color: #a3783c;
+  box-shadow: 0 0 0 4px rgb(163 120 60 / 10%);
+}
+
+.admin-textarea {
+  width: 100%;
+  resize: vertical;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(45 41 38 / 10%);
+  background: #fff;
+  padding: 0.875rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  outline: none;
+  transition: border-color 180ms, box-shadow 180ms;
+}
+
+/* 后台品牌主题：宣纸留白、墨色层次、鎏金线条与朱砂点睛 */
+.admin-shell {
+  background:
+    radial-gradient(circle at 88% 4%, rgba(194, 151, 86, 0.11), transparent 24rem),
+    linear-gradient(135deg, #f8f5ed 0%, #f3eee3 54%, #faf8f2 100%);
+}
+
+.admin-sidebar {
+  color: #29231e;
+  border-right: 1px solid rgba(160, 118, 58, 0.18);
+  background: linear-gradient(180deg, #faf7ef 0%, #f4eddf 100%);
+  box-shadow: 16px 0 45px rgba(72, 53, 30, 0.06);
+}
+
+.admin-sidebar::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 18px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(169, 119, 52, 0.4), transparent);
+  pointer-events: none;
+}
+
+.admin-workspace {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #faf8f3 0%, #f5efe4 100%);
+}
+
+.admin-topbar {
+  border-bottom: 1px solid rgba(152, 112, 57, 0.14);
+  background: rgba(250, 247, 239, 0.88);
+  box-shadow: 0 8px 24px rgba(69, 50, 26, 0.035);
+}
+
+.admin-login {
+  background:
+    radial-gradient(circle at 80% 12%, rgba(190, 143, 73, 0.12), transparent 24rem),
+    #f7f3e9;
+}
+
+.admin-login-art {
+  background:
+    linear-gradient(90deg, rgba(250, 248, 242, 0.72), rgba(250, 248, 242, 0.9)),
+    url("/brand/admin-brand-logo.png") center / cover no-repeat;
+}
+
+@media (max-width: 1023px) {
+  .admin-workspace {
+    background-size: 30rem auto;
+    background-position: right -12rem bottom -8rem;
+  }
+}
+
+/* 全站新中式主题：保留原有结构，统一品牌色。 */
+.text-blue-600,
+.text-blue-500,
+.text-sky-600,
+.text-teal-600,
+.text-indigo-600,
+.text-amber-600 { color: #E2492F !important; }
+
+.text-blue-400,
+.text-sky-400 { color: #F0836A !important; }
+
+.bg-blue-600,
+.bg-blue-500 { background-color: #C93A26 !important; }
+
+.bg-blue-50,
+.bg-blue-50\/40,
+.bg-blue-50\/60 { background-color: #F9E9E5 !important; }
+
+.border-blue-100,
+.border-blue-200,
+.border-blue-300,
+.border-blue-400,
+.border-blue-500 { border-color: #F0C9C0 !important; }
+
+.hover\:text-blue-700:hover,
+.hover\:text-blue-600:hover { color: #C93A26 !important; }
+
+.hover\:bg-blue-50:hover,
+.hover\:bg-blue-50\/60:hover { background-color: #F9E9E5 !important; }
+
+.focus-visible\:ring-blue-500:focus-visible,
+.focus\:ring-blue-500:focus { --tw-ring-color: #E2492F !important; }
 
 @keyframes partner-marquee-left {
   from { transform: translate3d(0, 0, 0); }
@@ -259,5 +466,379 @@
 
   .partner-marquee-track-reverse {
     animation-duration: 54s !important;
+  }
+}
+/* Spline-inspired layered parallax hero */
+.hero-parallax-scene {
+  --far-x: 0px;
+  --far-y: 0px;
+  --mid-x: 0px;
+  --mid-y: 0px;
+  --left-x: 0px;
+  --left-y: 0px;
+  --left-rotate: 0deg;
+  --right-x: 0px;
+  --right-y: 0px;
+  --right-rotate: 0deg;
+  --birds-x: 0px;
+  --birds-y: 0px;
+  perspective: 1250px;
+  transform-style: preserve-3d;
+  isolation: isolate;
+  background-image: none !important;
+}
+
+.hero-parallax-layer {
+  position: absolute;
+  inset: -1%;
+  width: 102%;
+  height: 102%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.hero-parallax-base {
+  z-index: 0;
+  transform: translateZ(-55px) scale(1.018);
+  filter: saturate(.96) contrast(1.025);
+}
+
+.hero-parallax-far,
+.hero-parallax-mid,
+.hero-parallax-left,
+.hero-parallax-right,
+.hero-parallax-birds {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+.hero-parallax-far {
+  z-index: 1;
+  transform: translate3d(var(--far-x), var(--far-y), -20px) scale(1.018);
+  filter: saturate(.91) contrast(1.055) brightness(1.015);
+  opacity: .94;
+}
+
+.hero-parallax-mid {
+  z-index: 2;
+  transform: translate3d(var(--mid-x), var(--mid-y), 18px) scale(1.022);
+  filter: saturate(.94) contrast(1.035) brightness(1.01);
+  opacity: .86;
+}
+
+.hero-parallax-left {
+  z-index: 3;
+  background-position: left bottom;
+  background-size: 70% auto;
+  transform-origin: left bottom;
+  transform: translate3d(var(--left-x), var(--left-y), 72px)
+    rotateY(var(--left-rotate))
+    scale(1.012);
+  filter: saturate(.91) contrast(.98) brightness(1.035)
+    drop-shadow(14px 9px 20px rgb(65 49 27 / 5%));
+  opacity: .89;
+}
+
+.hero-parallax-right {
+  z-index: 4;
+  background-position: right bottom;
+  background-size: 70% auto;
+  transform-origin: right bottom;
+  transform: translate3d(var(--right-x), var(--right-y), 95px)
+    rotateY(var(--right-rotate))
+    scale(1.015);
+  filter: saturate(.92) contrast(.985) brightness(1.035)
+    drop-shadow(-14px 9px 20px rgb(65 49 27 / 5%));
+  opacity: .89;
+}
+
+.hero-parallax-birds {
+  z-index: 6;
+  background-size: 80% auto;
+  transform: translate3d(var(--birds-x), var(--birds-y), 125px) scale(1.008);
+  filter: saturate(.9) contrast(1.06) brightness(1.01);
+  opacity: .74;
+  animation: hero-birds-drift 38s ease-in-out infinite alternate;
+}
+
+.hero-parallax-light {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 58% 56% at 50% 43%, rgb(255 252 244 / 64%) 0%, rgb(255 252 244 / 36%) 32%, rgb(255 252 244 / 14%) 58%, transparent 78%),
+    radial-gradient(ellipse 76% 70% at 50% 40%, rgb(255 254 249 / 30%) 0%, rgb(255 254 249 / 13%) 50%, transparent 80%),
+    linear-gradient(to bottom, rgb(255 253 247 / 7%), transparent 46%, rgb(248 245 237 / 10%));
+  pointer-events: none;
+}
+
+.hero-parallax-light::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: rgb(255 250 240 / 12%);
+  pointer-events: none;
+}
+
+@keyframes hero-birds-drift {
+  from {
+    margin-left: -3px;
+  }
+
+  to {
+    margin-left: 5px;
+  }
+}
+
+.hero-parallax-vignette {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  box-shadow: inset 0 0 110px rgb(112 82 39 / 6%);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) and (min-aspect-ratio: 2 / 1) {
+  .hero-parallax-left,
+  .hero-parallax-right {
+    background-size: 64% auto;
+  }
+
+  .hero-parallax-birds {
+    background-size: 70% auto;
+  }
+}
+
+@media (min-width: 768px) and (max-aspect-ratio: 4 / 3) {
+  .hero-parallax-left,
+  .hero-parallax-right {
+    background-size: 76% auto;
+  }
+
+  .hero-parallax-birds {
+    background-position: left top 6%;
+    background-size: 110% auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-mobile-nav > div {
+    min-height: 56px;
+  }
+
+  .home-mobile-nav [data-brand-mark] {
+    width: 2.75rem;
+    height: 1.9rem;
+  }
+
+  .home-mobile-nav [data-brand-name] {
+    max-width: none;
+    overflow: visible;
+    font-size: 0;
+  }
+
+  .home-mobile-nav [data-brand-name]::after {
+    content: "婵梦科技";
+    font-size: .75rem;
+    font-family: "SimHei", "Microsoft YaHei", "PingFang SC", "Heiti SC", sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #211b16;
+  }
+
+  .home-mobile-nav .apple-nav-actions {
+    gap: .2rem;
+  }
+
+  .home-mobile-nav .home-menu-button {
+    min-width: 4.25rem;
+    height: 2.25rem;
+    gap: .35rem;
+    padding-inline: .7rem;
+    font-size: .72rem !important;
+  }
+
+  .mobile-hero-content {
+    min-height: 100svh;
+    padding-top: 5.25rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .mobile-hero-content h1 > span:first-child {
+    font-size: clamp(2rem, 9.2vw, 2.35rem);
+  }
+
+  .mobile-hero-content h1 > span:last-child {
+    margin-top: .4rem;
+    font-size: clamp(1.85rem, 8.4vw, 2.18rem);
+    line-height: 1.08;
+  }
+
+  .mobile-hero-content h1 + div {
+    margin-top: 1.35rem;
+  }
+
+  .mobile-home-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .structured-heading {
+    margin-bottom: 1.75rem;
+    gap: .75rem;
+    padding-top: 1.15rem;
+  }
+
+  .structured-heading h2 {
+    margin-top: .55rem;
+    font-size: 1.75rem;
+    line-height: 1.15;
+  }
+
+  .structured-heading > p:last-child {
+    font-size: .925rem;
+    line-height: 1.75;
+  }
+
+  .mobile-service-list > div > a {
+    gap: .8rem;
+    padding-top: 1.45rem;
+    padding-bottom: 1.45rem;
+  }
+
+  .mobile-service-list > div > a > span:first-child {
+    font-size: 1.15rem;
+  }
+
+  .mobile-service-list h3 {
+    font-size: 1.2rem;
+  }
+
+  .mobile-service-list p {
+    line-height: 1.7;
+  }
+
+  .mobile-method-grid > div {
+    min-height: 0;
+    padding-top: 1.45rem;
+    padding-bottom: 1.45rem;
+  }
+
+  .mobile-method-grid > div > div {
+    gap: 1rem;
+  }
+
+  .mobile-method-grid > div > div > span {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .mobile-method-grid h3 {
+    font-size: 1.2rem;
+  }
+
+  .mobile-method-grid p {
+    margin-top: .55rem;
+    line-height: 1.65;
+  }
+
+  .mobile-cases-heading {
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .mobile-cases-heading p {
+    margin-inline: 0;
+    line-height: 1.7;
+  }
+
+  .mobile-case-grid {
+    gap: .9rem;
+  }
+
+  .mobile-case-grid a {
+    padding: 1.25rem;
+  }
+
+  .mobile-case-grid a > p:nth-of-type(1) {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .mobile-news-grid {
+    gap: 1rem;
+  }
+
+  .mobile-news-grid > a {
+    min-height: 0;
+    padding: 1.35rem;
+    border-radius: 1.35rem;
+  }
+
+  .mobile-news-grid h3 {
+    margin-top: 2rem;
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  .mobile-news-grid p {
+    line-height: 1.7;
+  }
+
+  .mobile-floating-cta {
+    padding-bottom: max(.5rem, env(safe-area-inset-bottom));
+  }
+
+  .home-page-main {
+    padding-bottom: calc(3.75rem + env(safe-area-inset-bottom));
+  }
+
+  .hero-parallax-base {
+    inset: -2%;
+    width: 104%;
+    height: 104%;
+  }
+
+  .hero-parallax-far,
+  .hero-parallax-mid,
+  .hero-parallax-left,
+  .hero-parallax-right,
+  .hero-parallax-birds {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .hero-parallax-left,
+  .hero-parallax-right {
+    opacity: .78;
+  }
+
+  .hero-parallax-left {
+    background-size: 80% auto;
+    transform: translate3d(var(--left-x), var(--left-y), 72px)
+      rotateY(var(--left-rotate))
+      scale(1.012);
+  }
+
+  .hero-parallax-right {
+    background-size: 80% auto;
+    transform: translate3d(var(--right-x), var(--right-y), 95px)
+      rotateY(var(--right-rotate))
+      scale(1.015);
+  }
+
+  .hero-parallax-birds {
+    background-position: left -8px top 12%;
+    background-size: 150% auto;
+    opacity: .55;
   }
 }

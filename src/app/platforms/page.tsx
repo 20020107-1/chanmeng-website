@@ -62,7 +62,7 @@ export default function PlatformsPage() {
               <p className="text-sm font-semibold text-blue-600">范围说明</p>
               <p className="mt-3 max-w-3xl text-base leading-7 text-gray-600">不同项目会根据行业、客户问题与平台可用性确定具体覆盖范围；平台算法和答案结果持续变化，不承诺固定排名或永久展示。</p>
             </div>
-            <Link href="/services/ai-search-acquisition" className="inline-flex w-fit rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500">了解AI搜索获客</Link>
+            <Link href="/services/geo-primary-acquisition" className="inline-flex w-fit rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500">了解GEO主渠道获客</Link>
           </div>
         </section>
       </main>

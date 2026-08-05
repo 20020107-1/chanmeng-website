@@ -1,16 +1,21 @@
 import "./globals.css";
 import HomeShortcut from "@/components/home-shortcut";
 import CookieConsent from "@/components/cookie-consent";
+import JsonLd from "@/components/json-ld";
+import { ORGANIZATION_ID, SITE_URL, WEBSITE_ID, absoluteUrl } from "@/lib/seo";
 
 export const metadata = {
-  metadataBase: new URL('https://20020107-1.github.io/chanmeng-website'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: '婵梦科技 · 企业增长解决方案',
     template: '%s | 婵梦科技',
   },
-  description: '婵梦科技是AI驱动的合伙制企业增长全链路平台，以AI赋能人才，以合伙成就事业。',
-  keywords: ['婵梦科技', 'AI搜索获客', 'GEO', 'AEO', 'LLMO', 'AI内容营销', '全域流量', '商业转化', '杭州'],
+  description: '婵梦科技围绕差异化、流量、转化与增效，通过六个结构化阶段帮助企业建立持续增长闭环。',
+  keywords: ['婵梦科技', '企业增长闭环', '商业诊断', '差异化定位', '产品体系', 'GEO获客', '短视频获客', '成交转化', '招商增长', '杭州'],
   authors: [{ name: '杭州婵梦传媒科技有限公司' }],
+  creator: '杭州婵梦传媒科技有限公司',
+  publisher: '杭州婵梦传媒科技有限公司',
+  alternates: { canonical: '/' },
   icons: {
     icon: '/icon.svg',
     shortcut: '/icon.svg',
@@ -18,9 +23,10 @@ export const metadata = {
   },
   openGraph: {
     title: '婵梦科技 · 企业增长解决方案',
-    description: '以AI技术和自研系统为底座，提供搜索获客、内容营销、全域流量与商业转化服务。',
+    description: '以商业诊断、产品内容、GEO获客、短视频增量、成交转化与招商增长构建六步企业增长闭环。',
     locale: 'zh_CN',
     type: 'website',
+    siteName: '婵梦科技',
     images: [
       {
         url: '/og-image.svg',
@@ -43,121 +49,42 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <HomeShortcut />
         <CookieConsent />
-        {/* GEO: Organization 结构化数据 — AI 搜索引擎引用 */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
+        <JsonLd data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
               '@type': 'Organization',
-              name: '婵梦科技',
-              alternateName: '杭州婵梦传媒科技有限公司',
-              description:
-                'AI驱动的合伙制企业增长全链路平台，以AI赋能人才，以合伙成就事业。',
-              url: 'https://chanmeng.com',
-              foundingDate: '2026-05',
-              founder: {
-                '@type': 'Person',
-                name: '婵梦科技创始人',
-              },
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: '杭州',
-                addressRegion: '浙江',
-                addressCountry: 'CN',
-                streetAddress: '萧山区新街街道垦辉六路799号2号楼901-1室',
-              },
-              areaServed: {
-                '@type': 'Country',
-                name: '中国',
-              },
-              knowsAbout: [
-                '企业增长服务',
-                'AI赋能',
-                '流量投流',
-                '零房租产业园',
-                '人才孵化',
-                '全域营销',
-              ],
-              slogan: '以AI赋能人才，以合伙成就事业',
-            }),
-          }}
-        />
-        {/* GEO: WebSite 结构化数据 — Sitelinks Searchbox */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: '婵梦科技',
-              url: 'https://chanmeng.com',
-              description:
-                'AI驱动，合伙共创，连接企业增长与创业者事业成长。',
-              inLanguage: 'zh-CN',
-              potentialAction: {
-                '@type': 'SearchAction',
-                target: {
-                  '@type': 'EntryPoint',
-                  urlTemplate: 'https://chanmeng.com/search?q={search_term_string}',
-                },
-                'query-input': 'required name=search_term_string',
-              },
-            }),
-          }}
-        />
-        {/* GEO: LocalBusiness 结构化数据 — 本地企业 AI 引用核心 */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
+              '@id': ORGANIZATION_ID,
               name: '杭州婵梦传媒科技有限公司',
               alternateName: '婵梦科技',
-              description:
-                'AI驱动的全链路增长服务商，覆盖AI搜索获客、内容营销、全域流量与商业转化。',
-              url: 'https://chanmeng.com',
-              email: 'yaoyuan@chanmengtech.cn',
+              url: SITE_URL,
+              logo: absoluteUrl('/icon.svg'),
+              image: absoluteUrl('/og-image.svg'),
+              description: '围绕差异化、流量、转化与增效，为企业提供六阶段结构化增长服务。',
               foundingDate: '2026-05',
-              slogan: '以AI赋能人才，以合伙成就事业',
-              image: 'https://chanmeng.com/og-image.png',
+              email: 'yaoyuan@chanmengtech.cn',
+              telephone: '+86-198-1234-7986',
               address: {
                 '@type': 'PostalAddress',
-                addressLocality: '杭州',
-                addressRegion: '浙江',
+                addressLocality: '杭州市',
+                addressRegion: '浙江省',
                 addressCountry: 'CN',
                 streetAddress: '萧山区新街街道垦辉六路799号2号楼901-1室',
-                postalCode: '311200',
               },
-              geo: {
-                '@type': 'GeoCoordinates',
-                latitude: '30.1815',
-                longitude: '120.2596',
-              },
-              openingHoursSpecification: {
-                '@type': 'OpeningHoursSpecification',
-                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                opens: '09:00',
-                closes: '18:00',
-              },
-              areaServed: {
-                '@type': 'Country',
-                name: '中国',
-              },
-              knowsAbout: [
-                '全域流量投流',
-                '零房租产业园',
-                'AI企业赋能',
-                '财税法律服务',
-                '政府补贴申请',
-              ],
-              sameAs: [
-                'https://chanmeng.com',
-              ],
-            }),
-          }}
-        />
+              areaServed: { '@type': 'Country', name: '中国' },
+              knowsAbout: ['商业模式诊断', '差异化定位', '产品服务设计', '企业知识库', 'GEO搜索优化', '短视频获客', '销售转化', '招商模式设计', '渠道复制', '营收增长'],
+              slogan: 'AI赋能企业增长，让获客与成交有迹可循',
+            },
+            {
+              '@type': 'WebSite',
+              '@id': WEBSITE_ID,
+              name: '婵梦科技',
+              url: SITE_URL,
+              inLanguage: 'zh-CN',
+              publisher: { '@id': ORGANIZATION_ID },
+            },
+          ],
+        }} />
       </body>
     </html>
   );

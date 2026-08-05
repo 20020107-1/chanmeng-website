@@ -3,8 +3,10 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import SiteHeader from '@/components/site-header'
 import Footer from '@/components/footer'
+import JsonLd from '@/components/json-ld'
 import CaseSectionNav from '@/components/case-section-nav'
 import { CASE_STUDIES, getCaseStudy } from '@/data/cases'
+import { ORGANIZATION_ID, absoluteUrl } from '@/lib/seo'
 
 export function generateStaticParams() {
   return CASE_STUDIES.map((item) => ({ slug: item.slug }))
@@ -12,7 +14,19 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const item = getCaseStudy((await params).slug)
-  return item ? { title: `${item.title}｜婵梦科技案例`, description: item.subtitle } : {}
+  if (!item) return {}
+  const url = absoluteUrl(`/cases/${item.slug}`)
+  return {
+    title: `${item.title}｜婵梦科技案例`,
+    description: item.subtitle,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      title: item.title,
+      description: item.subtitle,
+      url,
+    },
+  }
 }
 
 export default async function CaseDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -33,13 +47,20 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
             <span className="text-gray-500">{item.industry}</span>
           </div>
 
-          <div className="relative min-h-[400px] overflow-hidden bg-[#eef4ff] md:min-h-[470px]">
-            <div className="absolute inset-0 bg-[linear-gradient(110deg,#fff_0%,rgba(255,255,255,.96)_37%,rgba(255,255,255,.25)_66%,transparent_100%)]" />
-            <div className="absolute -right-20 -top-28 h-[560px] w-[560px] rounded-full border border-blue-300/50" />
-            <div className="absolute right-[8%] top-[18%] h-64 w-64 rounded-full bg-blue-600 shadow-[0_40px_120px_rgba(37,99,235,.30)]" />
-            <div className="absolute bottom-[-90px] right-[28%] h-72 w-72 rounded-full border-[42px] border-white/60" />
-            <div className="absolute right-[8%] top-[18%] grid h-64 w-64 place-items-center text-center text-white">
-              <div><p className="text-xs font-medium tracking-[0.2em] text-blue-100">CASE STUDY</p><p className="mt-3 text-5xl font-light">{String(currentIndex + 1).padStart(2, '0')}</p></div>
+          <div className="relative min-h-[400px] overflow-hidden border border-[#e7dfd1] bg-[#fbf8f1] md:min-h-[470px]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_48%,rgba(181,138,74,.10),transparent_26%),linear-gradient(110deg,#fff_0%,rgba(255,255,255,.95)_50%,rgba(248,242,231,.72)_100%)]" />
+            <div className="absolute -right-24 -top-36 h-[590px] w-[590px] rounded-full border border-[#b58a4a]/25" />
+            <div className="absolute right-[7%] top-1/2 hidden h-56 w-56 -translate-y-1/2 place-items-center rounded-full border border-[#b58a4a]/55 bg-white/45 text-center shadow-[0_24px_70px_rgba(80,55,25,.08)] backdrop-blur-sm md:grid">
+              <div>
+                <p className="text-[11px] font-medium tracking-[0.28em] text-[#9b753d]">CASE STUDY</p>
+                <p className="mt-2 font-serif text-6xl font-light tracking-[-0.06em] text-[#211d18]">{String(currentIndex + 1).padStart(2, '0')}</p>
+                <span className="mx-auto mt-5 block h-1.5 w-1.5 rounded-full bg-[#a83225]" />
+              </div>
+            </div>
+            <div className="absolute bottom-8 right-[5%] hidden items-center gap-3 text-[10px] tracking-[0.2em] text-[#aa8b5c] md:flex">
+              <span className="h-px w-12 bg-[#b58a4a]/55" />
+              CHANMENG
+              <span className="h-px w-12 bg-[#b58a4a]/55" />
             </div>
 
             <div className="relative z-10 flex min-h-[400px] max-w-[720px] flex-col p-7 md:min-h-[470px] md:p-12 lg:p-14">
@@ -177,6 +198,47 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
 
       </main>
       <Footer />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'Article',
+              '@id': `${absoluteUrl(`/cases/${item.slug}`)}#article`,
+              headline: item.title,
+              description: item.subtitle,
+              inLanguage: 'zh-CN',
+              mainEntityOfPage: absoluteUrl(`/cases/${item.slug}`),
+              author: { '@id': ORGANIZATION_ID },
+              publisher: { '@id': ORGANIZATION_ID },
+              about: [item.industry, item.category, ...item.tags],
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: '首页',
+                  item: absoluteUrl('/'),
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: '客户案例',
+                  item: absoluteUrl('/cases'),
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: item.title,
+                  item: absoluteUrl(`/cases/${item.slug}`),
+                },
+              ],
+            },
+          ],
+        }}
+      />
     </div>
   )
 }

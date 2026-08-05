@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 type Consent = 'necessary' | 'all'
 
 const STORAGE_KEY = 'chanmeng-cookie-consent'
 
 export default function CookieConsent() {
+  const pathname = usePathname()
   const [visible, setVisible] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [analytics, setAnalytics] = useState(true)
@@ -23,7 +25,7 @@ export default function CookieConsent() {
     setVisible(false)
   }
 
-  if (!visible) return null
+  if (!visible || pathname.startsWith('/admin')) return null
 
   return (
     <section

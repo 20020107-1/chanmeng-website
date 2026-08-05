@@ -32,15 +32,14 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
             <span className="text-gray-500">{item.industry}</span>
           </div>
 
-          <div className="relative min-h-[410px] overflow-hidden bg-[#eef4ff] md:min-h-[480px]">
-            <div className="absolute inset-0 bg-[linear-gradient(110deg,#fff_0%,rgba(255,255,255,.97)_39%,rgba(255,255,255,.32)_68%,transparent_100%)]" />
-            <div className="absolute -right-24 -top-32 h-[600px] w-[600px] rounded-full border border-blue-300/50" />
-            <div className="absolute right-[7%] top-[18%] h-64 w-64 rounded-full bg-[#1565f9] shadow-[0_40px_120px_rgba(37,99,235,.30)]" />
-            <div className="absolute bottom-[-100px] right-[28%] h-72 w-72 rounded-full border-[42px] border-white/60" />
-            <div className="absolute right-[7%] top-[18%] grid h-64 w-64 place-items-center text-center text-white">
+          <div className="relative min-h-[410px] overflow-hidden border border-[#e7dfd1] bg-[#fbf8f1] md:min-h-[480px]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_48%,rgba(181,138,74,.10),transparent_26%),linear-gradient(110deg,#fff_0%,rgba(255,255,255,.96)_50%,rgba(248,242,231,.72)_100%)]" />
+            <div className="absolute -right-24 -top-32 h-[600px] w-[600px] rounded-full border border-[#b58a4a]/25" />
+            <div className="absolute right-[7%] top-1/2 hidden h-56 w-56 -translate-y-1/2 place-items-center rounded-full border border-[#b58a4a]/55 bg-white/45 text-center shadow-[0_24px_70px_rgba(80,55,25,.08)] backdrop-blur-sm md:grid">
               <div>
-                <p className="text-xs font-medium tracking-[0.2em] text-blue-100">INDUSTRY SOLUTION</p>
-                <p className="mt-3 text-5xl font-light">{String(currentIndex + 1).padStart(2, '0')}</p>
+                <p className="text-[11px] font-medium tracking-[0.24em] text-[#9b753d]">INDUSTRY SOLUTION</p>
+                <p className="mt-2 font-serif text-6xl font-light tracking-[-0.06em] text-[#211d18]">{String(currentIndex + 1).padStart(2, '0')}</p>
+                <span className="mx-auto mt-5 block h-1.5 w-1.5 rounded-full bg-[#a83225]" />
               </div>
             </div>
             <div className="relative z-10 flex min-h-[410px] max-w-[770px] flex-col p-7 md:min-h-[480px] md:p-12 lg:p-14">
@@ -139,7 +138,7 @@ export default async function SolutionDetailPage({ params }: { params: Promise<{
             <section className="mb-10 rounded-[28px] bg-[#f5f5f7] px-7 py-10 md:px-10">
               <p className="text-sm font-semibold text-blue-600">下一步</p>
               <h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em] md:text-3xl">结合企业现状，判断优先解决哪个增长环节</h2>
-              <Link href="/contact" className="mt-7 inline-flex rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500">联系销售</Link>
+              <Link href="/contact" className="mt-7 inline-flex rounded-full bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-blue-500">预约诊断</Link>
             </section>
           </article>
         </div>

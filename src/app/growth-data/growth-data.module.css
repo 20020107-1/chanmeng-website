@@ -1,0 +1,27 @@
+.showcase {
+  position: relative;
+  width: 100%;
+  min-height: var(--showcase-height, 720px);
+  overflow: visible;
+  background: #0b0c0e;
+}
+
+.directContent {
+  display: block;
+  width: 100%;
+  min-height: var(--showcase-height, 720px);
+  opacity: 0;
+  background: #0b0c0e;
+  transition: opacity 0.35s ease;
+}
+
+.loaded .directContent {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .directContent {
+    transition: none;
+  }
+}
+

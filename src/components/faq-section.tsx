@@ -4,29 +4,40 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const FAQS = [
-  { q: '婵梦科技是做什么的？', a: '婵梦科技是一家AI驱动的全链路增长服务商，面向企业与个人IP连接内容生产、精准获客、商业转化、客户承接与持续增长。' },
-  { q: '核心服务有哪些？', a: '核心服务包括AI搜索获客、AI内容营销、全域流量运营和商业转化与增长。' },
-  { q: '服务如何收费？', a: '提供分级服务方案：基础版（基础服务+AI工具）、成长版（流量+培训+基础运营）、企业版（专属团队+全案陪跑）、定制版（按需报价）。具体价格以双方签署的合同为准。' },
-  { q: '如何与婵梦科技合作？', a: '合作模式包括城市服务商、业务合伙人、生态合作伙伴三种。具体合作条件与权益以双方签署的正式合作协议为准。投资有风险，合作需谨慎。' },
+  { q: 'GEO与传统SEO有什么区别？', a: 'SEO主要提升网页在搜索引擎结果中的排名；GEO更关注品牌内容能否被生成式AI理解、引用和推荐。两者并不冲突，企业应根据客户真实搜索与决策习惯进行组合布局。' },
+  { q: '哪些企业适合先做AI可见度诊断？', a: '已经有明确业务与产品，但在AI搜索中很少被提及；品牌介绍分散、内容缺乏统一结构；或希望判断自身与竞品在AI推荐场景中差距的企业，都适合先完成初步诊断。' },
+  { q: 'GEO项目多久能看到变化？', a: '效果周期取决于企业现有内容基础、行业竞争、平台收录和信源建设情况。项目会先明确阶段目标，并通过品牌提及、问题覆盖、引用来源、内容收录与咨询线索等指标持续复盘，不承诺未经验证的固定排名。' },
+  { q: '服务是否包含内容创作和发布？', a: '可根据项目范围提供问题矩阵、企业知识库、内容策划、结构化文章、短视频内容和渠道分发建议。最终交付范围、发布渠道与数量以双方确认的项目方案为准。' },
+  { q: '如何判断项目是否真正有效？', a: '我们会结合AI平台可见度、重点问题排名、内容引用率、信源覆盖、有效咨询和成交承接情况进行判断，而不是只看内容数量或单一曝光数据。' },
+  { q: '服务如何收费？', a: '费用会根据企业现状、服务阶段、内容规模、覆盖渠道和交付周期综合确定。建议先提交业务情况与目标，完成初步判断后再给出清晰的服务范围和报价。' },
 ]
 
 export default function FaqSection() {
   const [open, setOpen] = useState<number | null>(null)
   return (
-    <section id="faq" className="py-16 md:py-24 px-4 md:px-6 bg-blue-50/40" aria-label="常见问题">
-      <div className="max-w-3xl mx-auto">
-        <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-3xl md:text-4xl font-bold text-center mb-16 text-blue-600">常见问题</motion.h2>
-        <div className="space-y-3">
+    <section id="faq" className="mobile-home-section border-y border-[#ded5c7] bg-[#f4efe5] px-4 py-16 md:px-6 md:py-24" aria-label="常见问题">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-10 grid gap-4 border-t border-[#d9cebb] pt-6 md:mb-14 md:grid-cols-[1fr_1fr] md:items-end">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.2em] text-[#9a7440]">QUESTIONS & ANSWERS</p>
+            <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-[#211d18] md:text-5xl">开始合作前，客户常问的问题</motion.h2>
+          </div>
+          <p className="max-w-lg text-sm leading-7 text-[#6d655b] md:justify-self-end md:text-base">把服务边界、判断方式和合作预期说清楚，再决定是否进入下一步沟通。</p>
+        </div>
+        <div className="border-y border-[#d9cebb]">
           {FAQS.map((item, i) => (
-            <div key={i} className="bg-white rounded-xl border border-blue-100 shadow-sm overflow-hidden">
-              <button onClick={() => setOpen(open === i ? null : i)} className="w-full flex justify-between items-center px-6 py-4 text-left group hover:bg-blue-50/50 transition-colors">
-                <span className="font-medium text-gray-800 group-hover:text-blue-600 transition-colors">{item.q}</span>
-                <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="text-blue-400 text-xl ml-4 flex-shrink-0">+</motion.span>
+            <div key={i} className="border-b border-[#d9cebb] last:border-b-0">
+              <button onClick={() => setOpen(open === i ? null : i)} className="group flex w-full items-center justify-between gap-6 py-6 text-left transition-colors md:px-5 md:py-7 md:hover:bg-white/55">
+                <span className="flex items-start gap-5">
+                  <small className="pt-1 text-xs font-semibold text-[#9b2f22]">0{i + 1}</small>
+                  <span className="text-base font-semibold tracking-[-0.02em] text-[#211d18] md:text-lg">{item.q}</span>
+                </span>
+                <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="ml-4 flex-shrink-0 text-2xl font-light text-[#9a7440]">+</motion.span>
               </button>
               <AnimatePresence>
                 {open === i && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
-                    <p className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-blue-50 pt-4">{item.a}</p>
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.26 }} className="overflow-hidden">
+                    <p className="max-w-3xl pb-7 pl-9 pr-4 text-sm leading-7 text-[#6d655b] md:pl-[4.7rem] md:text-base md:leading-8">{item.a}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
