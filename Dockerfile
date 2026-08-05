@@ -3,6 +3,10 @@ FROM node:22-slim AS deps
 
 WORKDIR /app
 
+# Use Tencent Cloud mirror for Debian packages (faster in mainland China)
+RUN sed -i 's|http://deb.debian.org/debian|http://mirrors.cloud.tencent.com/debian|g' /etc/apt/sources.list.d/debian.sources && \
+    sed -i 's|http://deb.debian.org/debian-security|http://mirrors.cloud.tencent.com/debian-security|g' /etc/apt/sources.list.d/debian.sources
+
 # Install build tools for native modules (argon2, etc.)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 make g++ pkg-config libargon2-dev \
@@ -16,6 +20,10 @@ RUN npm ci
 FROM node:22-slim AS builder
 
 WORKDIR /app
+
+# Use Tencent Cloud mirror for Debian packages (faster in mainland China)
+RUN sed -i 's|http://deb.debian.org/debian|http://mirrors.cloud.tencent.com/debian|g' /etc/apt/sources.list.d/debian.sources && \
+    sed -i 's|http://deb.debian.org/debian-security|http://mirrors.cloud.tencent.com/debian-security|g' /etc/apt/sources.list.d/debian.sources
 
 # Install build tools needed during build phase
 RUN apt-get update && apt-get install -y --no-install-recommends \
