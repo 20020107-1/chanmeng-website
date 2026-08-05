@@ -1,22 +1,26 @@
 # ====== Stage 1: Install dependencies ======
-FROM node:22-alpine AS deps
+FROM node:22-slim AS deps
 
 WORKDIR /app
 
 # Install build tools for native modules (argon2, etc.)
-RUN apk add --no-cache python3 build-base argon2-dev
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 make g++ pkg-config libargon2-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies (including devDependencies for build)
 COPY package.json package-lock.json* ./
 RUN npm ci
 
 # ====== Stage 2: Build the project ======
-FROM node:22-alpine AS builder
+FROM node:22-slim AS builder
 
 WORKDIR /app
 
 # Install build tools needed during build phase
-RUN apk add --no-cache python3 build-base argon2-dev
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 make g++ pkg-config libargon2-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -25,7 +29,7 @@ COPY . .
 RUN npm run build
 
 # ====== Stage 3: Production runner ======
-FROM node:22-alpine AS runner
+FROM node:22-slim AS runner
 
 WORKDIR /app
 
@@ -34,8 +38,8 @@ ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 
 # Create non-root user for security
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+RUN groupadd --system --gid 1001 nodejs && \
+    useradd --system --uid 1001 --gid nodejs nextjs
 
 # Copy standalone build output
 COPY --from=builder /app/.next/standalone ./
