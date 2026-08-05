@@ -187,7 +187,7 @@ export default function CounterShowcase() {
       className={`${styles.showcase} ${ready ? styles.loaded : ''}`}
       aria-label="完整数据与品牌动效展示"
     >
-      <div ref={hostRef} className={styles.directContent} />
+      <div ref={hostRef} className={styles.directContent} translate="no" />
     </section>
   )
 }
